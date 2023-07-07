@@ -11,7 +11,13 @@ namespace Byte_Coffee.BD
     public class ConxBD
     {
         NpgsqlConnection conexion = new NpgsqlConnection();
-
+        /*
+        static String servidor = "containers-us-west-138.railway.app";
+        static String nombre_base_datos = "railway";
+        static String usuario = "postgres";
+        static String clave = "x2koH9jp9y2jl1w0YhC1";
+        static String puerto = "5967";
+        */
         static String servidor = "localhost";
         static String nombre_base_datos = "byte_coffee";
         static String usuario = "postgres";

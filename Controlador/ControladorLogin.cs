@@ -18,8 +18,6 @@ namespace Byte_Coffee.Controlador
 
         public bool ValidarAdmin(string correo, string clave)
         {
-
-
             return modelo_login.ValidarAdmin(correo, clave);
         }
     }

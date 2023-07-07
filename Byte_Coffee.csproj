@@ -110,6 +110,9 @@
     <Compile Include="BD\ConxBD.cs" />
     <Compile Include="Controlador\ControladorLogin.cs" />
     <Compile Include="Modelo\ModeloLogin.cs" />
+    <Compile Include="Vista\Inicio.xaml.cs">
+      <DependentUpon>Inicio.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Vista\Inicio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
