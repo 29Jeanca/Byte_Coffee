@@ -9,23 +9,23 @@ namespace Byte_Coffee.Controlador
 {
     public class ControladorInicio
     {
-        private ModeloInicio modeloInicio;
+        private ModeloInicio modelo_inicio;
 
         public ControladorInicio()
         {
-            modeloInicio = new ModeloInicio();
+            modelo_inicio = new ModeloInicio();
         }
         public int CantidadTrabajadores()
         {
-            return modeloInicio.CantidadTrabajadores();
+            return modelo_inicio.CantidadTrabajadores();
         }
         public int CantidadClientes()
         {
-            return modeloInicio.CantidadClientes();
+            return modelo_inicio.CantidadClientes();
         }
         public int CantidadPlatillos()
         {
-            return modeloInicio.CantidadPlatillos();
+            return modelo_inicio.CantidadPlatillos();
         }
     }
 }

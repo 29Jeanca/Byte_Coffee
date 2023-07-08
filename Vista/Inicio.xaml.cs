@@ -23,12 +23,19 @@ namespace Byte_Coffee.Vista
         private ControladorInicio controladorInicio;
         public Inicio()
         {
+
+            DateTime date = DateTime.Now;
             InitializeComponent();
             controladorInicio = new ControladorInicio();
             int cantidadTrabajadores = controladorInicio.CantidadTrabajadores();
             int cantidadClientes = controladorInicio.CantidadClientes();
             txtTrabajadores.Text = cantidadTrabajadores.ToString();
             txtClientes.Text = cantidadClientes.ToString();
+            int dia, mes, anio;
+            dia = date.Day;
+            mes = date.Month;
+            anio = date.Year;
+            txtfecha.Text = $"{dia}/{mes}/{anio}";
         }
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {

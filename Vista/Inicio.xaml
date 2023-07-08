@@ -164,9 +164,10 @@
 
             </Button>
         </Border>
-        <TextBlock Text='7-06-2023'
+        <TextBlock x:Name='txtfecha'
                    Foreground='#fff'
-                   FontSize='40'
+                   FontSize='30'
+                   FontFamily='Arial'
                    Grid.Row='0'
                    Grid.Column='6'
                    Grid.ColumnSpan='5'
