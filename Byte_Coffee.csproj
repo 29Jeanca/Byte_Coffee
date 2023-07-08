@@ -115,14 +115,14 @@
     <Compile Include="Modelo\ModeloInicio.cs" />
     <Compile Include="Modelo\ModeloInventario.cs" />
     <Compile Include="Modelo\ModeloLogin.cs" />
-    <Compile Include="Vista\Inicio.xaml.cs">
-      <DependentUpon>Inicio.xaml</DependentUpon>
+    <Compile Include="Vista\V_Inicio.xaml.cs">
+      <DependentUpon>V_Inicio.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\V_Inventario.xaml.cs">
       <DependentUpon>V_Inventario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
+    <Compile Include="Vista\V_Login.xaml.cs">
+      <DependentUpon>V_Login.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -154,7 +154,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Vista\Inicio.xaml">
+    <Page Include="Vista\V_Inicio.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,7 +162,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\Login.xaml">
+    <Page Include="Vista\V_Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

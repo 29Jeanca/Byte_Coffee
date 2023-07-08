@@ -16,19 +16,20 @@ namespace Byte_Coffee.Modelo
         {
             NpgsqlConnection conexion = conxbd.EstablecerConexion();
             string sentencia = "SELECT correo,clave FROM admin WHERE correo=@correo AND clave=@clave ";
-            NpgsqlCommand comando = new NpgsqlCommand(sentencia,conexion);
+            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
             comando.Parameters.AddWithValue("@correo", correo);
             comando.Parameters.AddWithValue("@clave", clave);
             NpgsqlDataReader reader = comando.ExecuteReader();
-            if(reader.Read())
+            if (reader.Read())
             {
                 conxbd.CerrarConexion();
                 return true;
-
             }
-            else { 
-            conxbd.CerrarConexion();
-                return false; }
+            else
+            {
+                conxbd.CerrarConexion();
+                return false;
+            }
         }
     }
 }

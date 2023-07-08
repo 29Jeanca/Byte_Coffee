@@ -15,7 +15,6 @@ namespace Byte_Coffee.Vista
             InitializeComponent();
             controladorInventario = new ControladorInventario();
             List<Clases.Inventario> inventarios = controladorInventario.ObtenerDatosInventario();
-
             DataContext = new { Inventario = inventarios };
         }
     }
