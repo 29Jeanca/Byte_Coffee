@@ -28,7 +28,7 @@ namespace Byte_Coffee.Vista
             {
                 MessageBox.Show("NO FUNCA");
             }
-            
+
         }
     }
 }

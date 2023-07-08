@@ -4,40 +4,73 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Height="1080" Width="1920" MaxHeight="1080" MaxWidth="1920" MinHeight="768" MinWidth="1366"
+        Height="1080"
+        Width="1920"
+        MaxHeight="1080"
+        MaxWidth="1920"
+        MinHeight="768"
+        MinWidth="1366"
         Background="#322E2E">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Column="0" Source="https://i.imgur.com/m1ZbynN.jpg" Stretch="UniformToFill" />
+        <Image Grid.Column="0"
+               Source="https://i.imgur.com/m1ZbynN.jpg"
+               Stretch="UniformToFill" />
 
         <Border  Style="{StaticResource contenedor_login}">
             <StackPanel>
-                <TextBlock Text="ByteCoffee" Style="{StaticResource texto_itulo}" />
+                <TextBlock Text="ByteCoffee"
+                           Style="{StaticResource texto_itulo}" />
 
                 <Grid Margin="30,40">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Line Stroke="#FFF" StrokeThickness="5" VerticalAlignment="Top" X1="0" X2="609" Margin="-32,-32,-32,0" />
+                    <Line Stroke="#FFF"
+                          StrokeThickness="5"
+                          VerticalAlignment="Top"
+                          X1="0"
+                          X2="609"
+                          Margin="-32,-32,-32,0" />
 
-                    <TextBlock Grid.Row="0"  Text="Correo electrónico" Foreground="#FFF" FontSize="28" VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="0"
+                               Text="Correo electrónico"
+                               Foreground="#FFF"
+                               FontSize="28"
+                               VerticalAlignment="Center" />
 
-                    <TextBox x:Name="txtCorreo" Grid.Row="1" Height="30" VerticalAlignment="Center" FontSize="20" Margin="0,5" BorderThickness="1" BorderBrush="#FFF" />
+                    <TextBox x:Name="txtCorreo"
+                             Grid.Row="1"
+                             Height="30"
+                             VerticalAlignment="Center"
+                             FontSize="20"
+                             Margin="0,5"
+                             BorderThickness="1"
+                             BorderBrush="#FFF" />
 
-                    <TextBlock Grid.Row="2" Text="Contraseña" Foreground="#FFF" FontSize="28" VerticalAlignment="Center" Height="40" />
-                    <PasswordBox x:Name="txtClave" Style="{StaticResource campo_clave}"/>
-                    <Button x:Name="btnOlvidarClave" Style="{StaticResource btn_olvido_clave}" />
-                    <Button  x:Name="btnIniciarSesion" Click="btnIniciarSesion_Click" Style="{StaticResource btn_iniciar_sesion}"/>
+                    <TextBlock Grid.Row="2"
+                               Text="Contraseña"
+                               Foreground="#FFF"
+                               FontSize="28"
+                               VerticalAlignment="Center"
+                               Height="40" />
+                    <PasswordBox x:Name="txtClave"
+                                 Style="{StaticResource campo_clave}" />
+                    <Button x:Name="btnOlvidarClave"
+                            Style="{StaticResource btn_olvido_clave}" />
+                    <Button  x:Name="btnIniciarSesion"
+                             Click="btnIniciarSesion_Click"
+                             Style="{StaticResource btn_iniciar_sesion}" />
                 </Grid>
             </StackPanel>
         </Border>

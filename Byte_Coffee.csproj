@@ -108,7 +108,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BD\ConxBD.cs" />
+    <Compile Include="Controlador\ControladorInicio.cs" />
     <Compile Include="Controlador\ControladorLogin.cs" />
+    <Compile Include="Modelo\ModeloInicio.cs" />
     <Compile Include="Modelo\ModeloLogin.cs" />
     <Compile Include="Vista\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>

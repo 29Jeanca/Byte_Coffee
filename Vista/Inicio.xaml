@@ -11,14 +11,15 @@
         MinWidth="1366"
         MaxHeight="1100"
         MaxWidth="1950"
-        Background='#A3C9FF '>
+        Background='#A3C9FF'
+        WindowStartupLocation='CenterOwner'>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height='319*' />
+            <RowDefinition Height='210*' />
+            <RowDefinition Height='265*' />
+            <RowDefinition Height='265*' />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width='220' />
@@ -30,12 +31,10 @@
         </Grid.ColumnDefinitions>
 
         <Grid Background="Transparent"
-              Height="40"
               Grid.ColumnSpan="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-
             <Button x:Name="btnMenu"
                     Content="☰"
                     FontSize="16"
@@ -50,7 +49,6 @@
         </Grid>
         <Grid x:Name="menuGrid"
               Background="#CCE6FF "
-              Width="200"
               Grid.RowSpan="5"
               Grid.Column="0"
               Visibility="Collapsed"
@@ -72,10 +70,10 @@
                         Click="Button_Click_2" />
             </StackPanel>
         </Grid>
-        <ScrollViewer Grid.Row="1"
-                      Grid.RowSpan="4"
+        <ScrollViewer Grid.RowSpan="5"
                       HorizontalScrollBarVisibility='Disabled'
-                      VerticalScrollBarVisibility='Auto'>
+                      VerticalScrollBarVisibility='Auto'
+                      Margin='0,25,0,0'>
             <StackPanel Orientation="Vertical"
                         Background="#146280">
                 <Grid>
@@ -90,109 +88,89 @@
                         <RowDefinition />
                         <RowDefinition Height='250' />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="40"
-                               Foreground="#ffff"
-                               FontSize="30"
-                               TextAlignment="Center"
+                    <TextBlock x:Name='txtTrabajadores'
+                               Style='{StaticResource textos_info}'
                                Grid.Row="0" />
                     <TextBlock Text="Trabajadores"
-                               Foreground="#ffff"
-                               FontSize="30"
-                               TextAlignment="Center"
+                               Style='{StaticResource textos_info}'
                                Grid.Row="1" />
                     <Button x:Name="btnTrabajadores"
                             Click="btnTrabajadores_Click"
-                            Background="Transparent"
-                            BorderBrush="Transparent"
+                            Style='{StaticResource btns_info}'
                             Grid.Row='2'>
                         <Image Source='https://i.imgur.com/3u7sRNT.png' />
                     </Button>
-                    <TextBlock Text='140'
-                               Foreground='#ffff'
-                               FontSize='30'
-                               Grid.Row='3'
-                               TextAlignment='Center' />
+                    <TextBlock x:Name='txtClientes'
+                               Style='{StaticResource textos_info}'
+                               Grid.Row='3' />
                     <TextBlock Text='Clientes'
-                               Foreground='#fff'
-                               FontSize='30'
+                               Style='{StaticResource textos_info}'
                                Grid.Row='4'
                                TextAlignment='Center' />
                     <Button x:Name="btnClientes"
                             Click='btnClientes_Click'
-                            Background="Transparent"
-                            BorderBrush="Transparent"
+                            Style='{StaticResource btns_info}'
                             Grid.Row='5'>
                         <Image Source='https://i.imgur.com/wTGaqrA.png' />
                     </Button>
-                    <TextBlock Text='14'
-                               Foreground='#fff'
-                               FontSize='30'
+                    <TextBlock Style='{StaticResource textos_info}'
                                Grid.Row='6'
-                               TextAlignment='Center' />
+                               x:Name='txtPlatillos' />
                     <TextBlock Text='Platillos'
-                               Foreground='#fff'
-                               FontSize='30'
-                               Grid.Row='7'
-                               TextAlignment='Center' />
+                               Style='{StaticResource textos_info}'
+                               Grid.Row='7' />
                     <Button x:Name="btnPlatillos"
                             Click='btnPlatillos_Click'
-                            Background="Transparent"
-                            BorderBrush="Transparent"
+                            Style='{StaticResource btns_info}'
                             Grid.Row='8'>
                         <Image Source='https://i.imgur.com/xqcUjkE.png' />
                     </Button>
                 </Grid>
             </StackPanel>
         </ScrollViewer>
-        <Border Background="#146280"
-                Padding="5"
-                CornerRadius="25"
+        <Border Style='{StaticResource contenedor_botones}'
                 Grid.Column='2'
                 Grid.Row='1'
-                Cursor='Hand'
                 Margin='0,261,15,0'
                 Grid.RowSpan='2'>
-            <Button Background='Transparent'
-                    BorderBrush='Transparent'
+            <Button Style='{StaticResource btns_info}'
                     Content='Ver inventario'
-                    Foreground='#fff'
-                    FontSize='20'>
+                    x:Name='BtnVerInventario'
+                    Click='BtnVerInventario_Click'>
             </Button>
         </Border>
         <Border Grid.Column='3'
                 Grid.Row='1'
-                Background='#146280'
-                Padding='5'
-                CornerRadius='25'
-                Cursor='Hand'
+                Style='{StaticResource contenedor_botones}'
                 Grid.ColumnSpan='2'
                 Margin='96,261,124,0'
                 Grid.RowSpan='2'>
             <Button Content='Reabastecer producto'
-                    Foreground='#fff'
-                    FontSize='20'
-                    Background='Transparent'
-                    BorderBrush='Transparent'>
-
+                    Style='{StaticResource btns_info}'
+                    x:Name='BtnReabastecerProducto'
+                    Click='BtnReabastecerProducto_Click'>
             </Button>
         </Border>
         <Border Grid.Column='5'
                 Grid.Row='1'
-                Background='#146280'
-                Padding='5'
-                CornerRadius='25'
-                Cursor='Hand'
-                Grid.ColumnSpan='3'
+                Style='{StaticResource contenedor_botones}'
                 Margin='13,261,16,0'
                 Grid.RowSpan='2'>
             <Button Content='Agregar producto'
-                    Foreground='#fff'
-                    FontSize='20'
-                    Background='Transparent'
-                    BorderBrush='Transparent'
-                    Margin='-2,0,2,0'>
+                    Style='{StaticResource btns_info}'
+                    Margin='-2,0,2,0'
+                    x:Name='BtnAgregarProduto'
+                    Click='BtnAgregarProduto_Click'>
 
             </Button>
         </Border>
+        <TextBlock Text='7-06-2023'
+                   Foreground='#fff'
+                   FontSize='40'
+                   Grid.Row='0'
+                   Grid.Column='6'
+                   Grid.ColumnSpan='5'
+                   HorizontalAlignment='Right'
+                   Grid.RowSpan='3' />
     </Grid>
 </Window>
