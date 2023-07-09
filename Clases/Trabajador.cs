@@ -10,12 +10,14 @@ namespace Byte_Coffee.Clases
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public int Apellido { get; set; }
+        public string Apellido1 { get; set; }
+        public string Apellido2 { get; set; }
+        public string Correo { get; set; }
         public string Puesto { get; set; }
         public string Horario { get; set; }
         public string Fecha_Contratacion { get; set; }
-        public int Salario { get; set; }
-        public bool SolicitarVacaciones(string fecha_incio, string fecha_fin)
+        public string Salario { get; set; }
+        public bool SolicitarVacaciones(string Fecha_incio, string Fecha_fin)
         {
             return false;
         }

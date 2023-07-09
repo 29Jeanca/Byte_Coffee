@@ -1,0 +1,67 @@
+﻿<Window x:Class="Byte_Coffee.Vista.V_Trabajador"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Byte_Coffee.Vista"
+        mc:Ignorable="d"
+        Title="V_Trabajador"
+        Height="450"
+        Width="800"
+        Background='RosyBrown'>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="listaTrabajadores">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Nombre}"
+                                   Margin="10" />
+                        <TextBlock Text="{Binding Apellido1}"
+                                   Margin="10" />
+                        <TextBlock Text="{Binding Puesto}"
+                                   Margin="10" />
+                        <TextBlock Text="{Binding Salario}"
+                                   Margin="10" />
+                        <Button Content="Eliminar"
+                                Click="BbtnEliminar_Click"
+                                Margin="10"
+                                CommandParameter="{Binding Id}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+    <Window.Resources>
+        <Style TargetType="ListBox">
+            <Setter Property="Background"
+                    Value="RosyBrown" />
+            <Setter Property="Foreground"
+                    Value="Pink" />
+            <Setter Property="BorderBrush"
+                    Value="SaddleBrown" />
+            <Setter Property="BorderThickness"
+                    Value="2" />
+            <Setter Property="FontSize"
+                    Value="16" />
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Background"
+                                Value="MistyRose" />
+                        <Setter Property="Foreground"
+                                Value="Chocolate" />
+                        <Setter Property="Padding"
+                                Value="10" />
+                        <Setter Property="Margin"
+                                Value="5" />
+                        <Setter Property="FontSize"
+                                Value="14" />
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+</Window>

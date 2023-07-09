@@ -109,12 +109,15 @@
     </Compile>
     <Compile Include="BD\ConxBD.cs" />
     <Compile Include="Clases\Inventario.cs" />
+    <Compile Include="Clases\Trabajador.cs" />
     <Compile Include="Controlador\ControladorInicio.cs" />
     <Compile Include="Controlador\ControladorInventario.cs" />
     <Compile Include="Controlador\ControladorLogin.cs" />
+    <Compile Include="Controlador\ControladorTrabajador.cs" />
     <Compile Include="Modelo\ModeloInicio.cs" />
     <Compile Include="Modelo\ModeloInventario.cs" />
     <Compile Include="Modelo\ModeloLogin.cs" />
+    <Compile Include="Modelo\ModeloTrabajador.cs" />
     <Compile Include="Vista\V_Inicio.xaml.cs">
       <DependentUpon>V_Inicio.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,9 @@
     </Compile>
     <Compile Include="Vista\V_Login.xaml.cs">
       <DependentUpon>V_Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\V_Trabajador.xaml.cs">
+      <DependentUpon>V_Trabajador.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\V_Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\V_Trabajador.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,6 +18,12 @@ namespace Byte_Coffee.BD
         static String clave = "x2koH9jp9y2jl1w0YhC1";
         static String puerto = "5967";
         */
+        /* static String servidor = "kandula.db.elephantsql.com";
+            static String nombre_base_datos = "codrypen";
+            static String usuario = "codrypen";
+            static String clave = "b6mr_8WE-IIUAgNcAHLYGi3j7U6zUDGe";
+            static String puerto = "5432";
+          */
         static String servidor = "localhost";
         static String nombre_base_datos = "byte_coffee";
         static String usuario = "postgres";
