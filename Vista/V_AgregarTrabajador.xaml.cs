@@ -27,6 +27,7 @@ namespace Byte_Coffee.Vista
         {
             InitializeComponent();
             controladorTrabajador = new ControladorTrabajador();
+
         }
 
         private void btnInsertar_Click(object sender, RoutedEventArgs e)
@@ -42,20 +43,7 @@ namespace Byte_Coffee.Vista
             dia = fechaActual.Day;
             mes = fechaActual.Month;
             anio = fechaActual.Year;
-            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(apellido1) || string.IsNullOrEmpty(correo) ||
-       string.IsNullOrEmpty(puesto) || string.IsNullOrEmpty(horario) || string.IsNullOrEmpty(salario))
-            {
-                MessageBox.Show("Todos los campos deben ser completados.");
-                return;
-            }
-
-            if (nombre.Length < 4 || apellido1.Length < 4 || correo.Length < 4 ||
-                puesto.Length < 4 || horario.Length < 4 || salario.Length < 4)
-            {
-                MessageBox.Show("Todos los campos deben tener al menos 4 caracteres.");
-                return;
-            }
-
+            ValidacionCampos();
             Trabajador nuevoTrabajador = new Trabajador()
             {
 
@@ -71,6 +59,29 @@ namespace Byte_Coffee.Vista
             };
 
             controladorTrabajador.AgregarTrabajador(nuevoTrabajador);
+
+        }
+        private bool ValidacionCampos()
+        {
+            string nombre = txtNombre.Text;
+            string apellido1 = txtApellido1.Text;
+            string apellido2 = txtApellido2.Text;
+            string correo = txtCorreo.Text;
+            string puesto = txtPuesto.Text;
+            string horario = txtHorario.Text;
+            string salario = txtSalario.Text;
+            Trabajador trabajador = new Trabajador()
+            {
+                Nombre = nombre,
+                Apellido1 = apellido1,
+                Apellido2 = apellido2,
+                Correo = correo,
+                Puesto = puesto,
+                Horario = horario,
+                Salario = salario
+
+            };
+            return controladorTrabajador.ValidacionCampos(trabajador);
 
         }
     }

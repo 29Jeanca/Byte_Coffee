@@ -31,5 +31,10 @@ namespace Byte_Coffee.Controlador
             ModeloTrabajador modeloTrabajador = new ModeloTrabajador();
             modeloTrabajador.AgregarTrabajador(trabajador);
         }
+        public bool ValidacionCampos(Trabajador trabajador)
+        {
+            return modelo_trabajador.ValidacionCampos(trabajador);
+        }
+
     }
 }
