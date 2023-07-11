@@ -42,6 +42,19 @@ namespace Byte_Coffee.Vista
             dia = fechaActual.Day;
             mes = fechaActual.Month;
             anio = fechaActual.Year;
+            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(apellido1) || string.IsNullOrEmpty(correo) ||
+       string.IsNullOrEmpty(puesto) || string.IsNullOrEmpty(horario) || string.IsNullOrEmpty(salario))
+            {
+                MessageBox.Show("Todos los campos deben ser completados.");
+                return;
+            }
+
+            if (nombre.Length < 4 || apellido1.Length < 4 || correo.Length < 4 ||
+                puesto.Length < 4 || horario.Length < 4 || salario.Length < 4)
+            {
+                MessageBox.Show("Todos los campos deben tener al menos 4 caracteres.");
+                return;
+            }
 
             Trabajador nuevoTrabajador = new Trabajador()
             {
