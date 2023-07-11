@@ -82,7 +82,9 @@ namespace Byte_Coffee.Vista
 
         private void BtnVerInventario_Click(object sender, RoutedEventArgs e)
         {
-
+            Inventario inventario = new Inventario();
+            inventario.Show();
+            this.Close();
         }
     }
 

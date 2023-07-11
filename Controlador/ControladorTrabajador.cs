@@ -26,5 +26,10 @@ namespace Byte_Coffee.Controlador
             ModeloTrabajador modeloTrabajador = new ModeloTrabajador();
             modeloTrabajador.EliminarTrabajador(id);
         }
+        public void AgregarTrabajador(Trabajador trabajador)
+        {
+            ModeloTrabajador modeloTrabajador = new ModeloTrabajador();
+            modeloTrabajador.AgregarTrabajador(trabajador);
+        }
     }
 }

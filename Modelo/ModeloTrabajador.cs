@@ -3,6 +3,7 @@ using Byte_Coffee.Clases;
 using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,22 @@ namespace Byte_Coffee.Modelo
             return trabajadores;
 
         }
+        public void AgregarTrabajador(Trabajador trabajador)
+        {
+            NpgsqlConnection conexion = conxBD.EstablecerConexion();
+            string sentencia = "INSERT INTO trabajador (nombre, apellido1, apellido2,correo_trabajador,fecha_contratacion,horario_trabajador,puesto_trabajador,salario_trabajador) VALUES (@nombre, @apellido1,@apellido2,@correo_trabajador,@fecha_contratacion,@horario_trabajador,@puesto_trabajador,@salario_trabajador)";
+            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+            comando.Parameters.AddWithValue("@nombre", trabajador.Nombre);
+            comando.Parameters.AddWithValue("@apellido1", trabajador.Apellido1);
+            comando.Parameters.AddWithValue("@apellido2", trabajador.Apellido2);
+            comando.Parameters.AddWithValue("@correo_trabajador", trabajador.Correo);
+            comando.Parameters.AddWithValue("@fecha_contratacion", trabajador.Fecha_Contratacion);
+            comando.Parameters.AddWithValue("@puesto_trabajador", trabajador.Puesto);
+            comando.Parameters.AddWithValue("@salario_trabajador", trabajador.Salario);
+            conexion.Open();
+            comando.ExecuteNonQuery();
+
+        }
         public void EliminarTrabajador(int id)
         {
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
@@ -49,6 +66,5 @@ namespace Byte_Coffee.Modelo
             comando.ExecuteNonQuery();
             conxBD.CerrarConexion();
         }
-
     }
 }

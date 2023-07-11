@@ -16,7 +16,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height='319*' />
+            <RowDefinition Height='243*' />
+            <RowDefinition Height='76*' />
             <RowDefinition Height='210*' />
             <RowDefinition Height='265*' />
             <RowDefinition Height='265*' />
@@ -49,7 +50,7 @@
         </Grid>
         <Grid x:Name="menuGrid"
               Background="#CCE6FF "
-              Grid.RowSpan="5"
+              Grid.RowSpan="6"
               Grid.Column="0"
               Visibility="Collapsed"
               Panel.ZIndex="1"
@@ -70,7 +71,7 @@
                         Click="Button_Click_2" />
             </StackPanel>
         </Grid>
-        <ScrollViewer Grid.RowSpan="5"
+        <ScrollViewer Grid.RowSpan="6"
                       HorizontalScrollBarVisibility='Disabled'
                       VerticalScrollBarVisibility='Auto'
                       Margin='0,25,0,0'>
@@ -89,75 +90,120 @@
                         <RowDefinition Height='250' />
                     </Grid.RowDefinitions>
                     <TextBlock x:Name='txtTrabajadores'
-                               Style='{StaticResource textos_info}'
+                               Foreground='#fff'
+                               FontSize='30'
+                               TextAlignment='Center'
                                Grid.Row="0" />
                     <TextBlock Text="Trabajadores"
-                               Style='{StaticResource textos_info}'
+                               Foreground='#fff'
+                               FontSize='30'
+                               TextAlignment='Center'
                                Grid.Row="1" />
                     <Button x:Name="btnTrabajadores"
                             Click="btnTrabajadores_Click"
-                            Style='{StaticResource btns_info}'
+                            Background='Transparent'
+                            BorderBrush='Transparent'
+                            Cursor='Hand'
+                            Foreground='#fff'
+                            FontFamily='25'
                             Grid.Row='2'>
                         <Image Source='https://i.imgur.com/3u7sRNT.png' />
                     </Button>
                     <TextBlock x:Name='txtClientes'
-                               Style='{StaticResource textos_info}'
+                               Foreground='#fff'
+                               FontSize='30'
+                               TextAlignment='Center'
                                Grid.Row='3' />
                     <TextBlock Text='Clientes'
-                               Style='{StaticResource textos_info}'
-                               Grid.Row='4'
-                               TextAlignment='Center' />
+                               Foreground='#fff'
+                               FontSize='30'
+                               TextAlignment='Center'
+                               Grid.Row='4' />
                     <Button x:Name="btnClientes"
                             Click='btnClientes_Click'
-                            Style='{StaticResource btns_info}'
+                            Background='Transparent'
+                            BorderBrush='Transparent'
+                            Cursor='Hand'
+                            Foreground='#fff'
+                            FontFamily='25'
                             Grid.Row='5'>
                         <Image Source='https://i.imgur.com/wTGaqrA.png' />
                     </Button>
-                    <TextBlock Style='{StaticResource textos_info}'
+                    <TextBlock Foreground='#fff'
+                               FontSize='30'
+                               TextAlignment='Center'
                                Grid.Row='6'
                                x:Name='txtPlatillos' />
                     <TextBlock Text='Platillos'
-                               Style='{StaticResource textos_info}'
+                               Foreground='#fff'
+                               FontSize='30'
+                               TextAlignment='Center'
                                Grid.Row='7' />
                     <Button x:Name="btnPlatillos"
                             Click='btnPlatillos_Click'
-                            Style='{StaticResource btns_info}'
+                            Background='Transparent'
+                            BorderBrush='Transparent'
+                            Cursor='Hand'
+                            Foreground='#fff'
+                            FontFamily='25'
                             Grid.Row='8'>
                         <Image Source='https://i.imgur.com/xqcUjkE.png' />
                     </Button>
                 </Grid>
             </StackPanel>
         </ScrollViewer>
-        <Border Style='{StaticResource contenedor_botones}'
+        <Border Background='#146280'
+                Padding='5'
+                CornerRadius='25'
+                Cursor='Hand'
                 Grid.Column='2'
-                Grid.Row='1'
-                Margin='0,261,15,0'
+                Grid.Row='2'
+                Margin='0,18,15,0'
                 Grid.RowSpan='2'>
-            <Button Style='{StaticResource btns_info}'
+            <Button Background='Transparent'
+                    BorderBrush='Transparent'
+                    Cursor='Hand'
+                    Foreground='#fff'
+                    FontFamily='25'
                     Content='Ver inventario'
                     x:Name='BtnVerInventario'
-                    Click='BtnVerInventario_Click'>
-            </Button>
+                    Height='250'
+                    Click='BtnVerInventario_Click'
+                    Margin='0,2,-5,3' />
         </Border>
         <Border Grid.Column='3'
-                Grid.Row='1'
-                Style='{StaticResource contenedor_botones}'
+                Grid.Row='2'
+                Background='#146280'
+                Padding='5'
+                CornerRadius='25'
+                Cursor='Hand'
                 Grid.ColumnSpan='2'
-                Margin='96,261,124,0'
+                Margin='96,18,124,0'
                 Grid.RowSpan='2'>
             <Button Content='Reabastecer producto'
-                    Style='{StaticResource btns_info}'
+                    Background='Transparent'
+                    BorderBrush='Transparent'
+                    Cursor='Hand'
+                    Foreground='#fff'
+                    FontFamily='25'
                     x:Name='BtnReabastecerProducto'
                     Click='BtnReabastecerProducto_Click'>
             </Button>
         </Border>
         <Border Grid.Column='5'
-                Grid.Row='1'
-                Style='{StaticResource contenedor_botones}'
-                Margin='13,261,16,0'
+                Grid.Row='2'
+                Background='#146280'
+                Padding='5'
+                CornerRadius='25'
+                Cursor='Hand'
+                Margin='13,18,16,0'
                 Grid.RowSpan='2'>
             <Button Content='Agregar producto'
-                    Style='{StaticResource btns_info}'
+                    Background='Transparent'
+                    BorderBrush='Transparent'
+                    Cursor='Hand'
+                    Foreground='#fff'
+                    FontFamily='25'
                     Margin='-2,0,2,0'
                     x:Name='BtnAgregarProduto'
                     Click='BtnAgregarProduto_Click'>
@@ -169,9 +215,8 @@
                    FontSize='30'
                    FontFamily='Arial'
                    Grid.Row='0'
-                   Grid.Column='6'
-                   Grid.ColumnSpan='5'
+                   Grid.Column='5'
                    HorizontalAlignment='Right'
-                   Grid.RowSpan='3' />
+                   Grid.RowSpan='4' />
     </Grid>
 </Window>
