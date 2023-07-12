@@ -42,14 +42,18 @@ namespace Byte_Coffee.Vista
 
         private void BbtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            Button btnEliminar = (Button)sender;
-            Trabajador trabajador = (Trabajador)btnEliminar.DataContext;
-            int idTrabajador = trabajador.Id;
+            var siNo = MessageBox.Show("¿Está seguro que desea eliminar al trabajador?", "IMPORTANTE", MessageBoxButton.YesNo);
+            if (siNo == MessageBoxResult.Yes)
+            {
+                Button btnEliminar = (Button)sender;
+                Trabajador trabajador = (Trabajador)btnEliminar.DataContext;
+                int idTrabajador = trabajador.Id;
 
-            controladorTrabajador.EliminarTrabajador(idTrabajador);
+                controladorTrabajador.EliminarTrabajador(idTrabajador);
 
-            List<Trabajador> trabajadores = controladorTrabajador.ObtenerDatosTrabajador();
-            listaTrabajadores.ItemsSource = trabajadores;
+                List<Trabajador> trabajadores = controladorTrabajador.ObtenerDatosTrabajador();
+                listaTrabajadores.ItemsSource = trabajadores;
+            }
         }
     }
 }

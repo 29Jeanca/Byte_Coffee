@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -13,6 +14,10 @@ namespace Byte_Coffee.Modelo
     public class ModeloTrabajador
     {
         private readonly ConxBD conxBD;
+        private const string emailRegex = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
+                    + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)+)"
+                    + @"(?<=[^\.])@(([a-z0-9]+-)?[a-z0-9]+\.)*[a-z]"
+                    + @"{2,63}(\.[a-z]{2,})?$";
         public ModeloTrabajador()
         {
             conxBD = new ConxBD();
@@ -83,14 +88,30 @@ namespace Byte_Coffee.Modelo
         }
         public bool ValidacionCampos(Trabajador trabajador)
         {
+            NpgsqlConnection conexion = conxBD.EstablecerConexion();
+            string sentencia = $"SELECT correo_trabajador FROM trabajador  WHERE correo_trabajador=@correo LIMIT 1";
+            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+            comando.Parameters.AddWithValue("@correo", trabajador.Correo);
+            NpgsqlDataReader lector = comando.ExecuteReader();
             if (string.IsNullOrEmpty(trabajador.Nombre) || string.IsNullOrEmpty(trabajador.Apellido1) || string.IsNullOrEmpty(trabajador.Correo) ||
                 string.IsNullOrEmpty(trabajador.Puesto) || string.IsNullOrEmpty(trabajador.Horario) || string.IsNullOrEmpty(trabajador.Salario))
             {
                 MessageBox.Show("Todos los campos deben ser completados.");
                 return false;
             }
+            else if (!Regex.IsMatch(trabajador.Correo, emailRegex))
+            {
+                MessageBox.Show("El correo tiene un formato incorrecto");
+                return false;
+            }
+            else if (lector.Read())
+            {
+                MessageBox.Show("El correo ya existe");
+                return false;
+            }
             else
             {
+                MessageBox.Show("¡Trabajador Ingresado Correctamente!");
                 return true;
             }
 
