@@ -28,10 +28,11 @@ namespace Byte_Coffee.Vista
             controladorTrabajador = new ControladorTrabajador();
             List<Trabajador> trabajadors = controladorTrabajador.ObtenerDatosTrabajador();
             listaTrabajadores.ItemsSource = trabajadors;
+            Puestos.ItemsSource = controladorTrabajador.LlenarComboBox();
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
 
         }
 
@@ -40,7 +41,7 @@ namespace Byte_Coffee.Vista
 
         }
 
-        private void BbtnEliminar_Click(object sender, RoutedEventArgs e)
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             var siNo = MessageBox.Show("¿Está seguro que desea eliminar al trabajador?", "IMPORTANTE", MessageBoxButton.YesNo);
             if (siNo == MessageBoxResult.Yes)
@@ -54,6 +55,33 @@ namespace Byte_Coffee.Vista
                 List<Trabajador> trabajadores = controladorTrabajador.ObtenerDatosTrabajador();
                 listaTrabajadores.ItemsSource = trabajadores;
             }
+        }
+        private void Puestos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string Puesto = (string)Puestos.SelectedItem;
+            if (Puesto == "Todos")
+            {
+                List<Trabajador> ListaTodos = controladorTrabajador.ObtenerDatosTrabajador();
+                listaTrabajadores.ItemsSource = ListaTodos;
+            }
+            else
+            {
+                List<Trabajador> ListaFiltrada = controladorTrabajador.FiltrarPorPuesto(Puesto);
+                listaTrabajadores.ItemsSource = ListaFiltrada;
+            }
+        }
+
+        private void btnDetalles_Click(object sender, RoutedEventArgs e)
+        {
+            Button btnDetalles = (Button)sender;
+            Trabajador trabajador = (Trabajador)btnDetalles.DataContext;
+            int idTrabajador = trabajador.Id;
+            List<Trabajador> detallesTrabajador = controladorTrabajador.DetallesTrabajador(idTrabajador);
+
+            V_DetallesTrabajador v_DetallesTrabajador = new V_DetallesTrabajador(detallesTrabajador);
+            v_DetallesTrabajador.Show();
+
+
         }
     }
 }

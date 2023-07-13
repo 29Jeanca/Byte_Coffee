@@ -21,15 +21,25 @@ namespace Byte_Coffee.Controlador
         {
             return modelo_trabajador.ObtenerDatosTrabajador();
         }
+        public List<string> LlenarComboBox()
+        {
+            return modelo_trabajador.LlenarComboBox();
+        }
+        public List<Trabajador> FiltrarPorPuesto(string Puesto)
+        {
+            return modelo_trabajador.FiltrarPorPuesto(Puesto);
+        }
         public void EliminarTrabajador(int id)
         {
-            ModeloTrabajador modeloTrabajador = new ModeloTrabajador();
-            modeloTrabajador.EliminarTrabajador(id);
+            modelo_trabajador.EliminarTrabajador(id);
+        }
+        public List<Trabajador> DetallesTrabajador(int id)
+        {
+            return modelo_trabajador.DetallesTrabajador(id);
         }
         public void AgregarTrabajador(Trabajador trabajador)
         {
-            ModeloTrabajador modeloTrabajador = new ModeloTrabajador();
-            modeloTrabajador.AgregarTrabajador(trabajador);
+            modelo_trabajador.AgregarTrabajador(trabajador);
         }
         public bool ValidacionCampos(Trabajador trabajador)
         {
