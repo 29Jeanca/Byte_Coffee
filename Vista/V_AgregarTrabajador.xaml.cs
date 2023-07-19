@@ -54,7 +54,7 @@ namespace Byte_Coffee.Vista
                 Correo = correo,
                 Puesto = puesto,
                 Horario = horario,
-                Fecha_Contratacion = $"{dia}/{mes}/{anio}",
+                FechaContratacion = $"{dia}/{mes}/{anio}",
                 Salario = salario
             };
 

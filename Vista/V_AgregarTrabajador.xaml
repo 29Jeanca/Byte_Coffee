@@ -19,8 +19,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0"
@@ -30,7 +28,6 @@
             <TextBox Grid.Row="0"
                      x:Name='txtNombre'
                      Margin="150,10,10,10" />
-
             <Label Grid.Row="1"
                    Content="Apellido 1:"
                    Margin="10"

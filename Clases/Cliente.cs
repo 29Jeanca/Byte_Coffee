@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace Byte_Coffee.Clases
 {
-    public class Trabajador
+    public class Cliente
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Apellido1 { get; set; }
         public string Apellido2 { get; set; }
-        public string Correo { get; set; }
-        public string Puesto { get; set; }
-        public string Horario { get; set; }
-        public string FechaContratacion { get; set; }
-        public string Salario { get; set; }
+        public string Num_Telefonico { get; set; }
+        public string FechaRegistro { get; set; }
+        public string UltimaReserva { get; set; }
+        public string Email { get; set; }
+        public string Clave { get; set; }
     }
-
 }

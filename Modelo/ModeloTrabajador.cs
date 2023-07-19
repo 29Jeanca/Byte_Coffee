@@ -113,7 +113,7 @@ namespace Byte_Coffee.Modelo
                     Apellido1 = lector.GetString(1),
                     Apellido2 = lector.GetString(2),
                     Correo = lector.GetString(3),
-                    Fecha_Contratacion = lector.GetString(4),
+                    FechaContratacion = lector.GetString(4),
                     Horario = lector.GetString(5),
                     Puesto = lector.GetString(6),
                     Salario = lector.GetString(7)
@@ -135,7 +135,7 @@ namespace Byte_Coffee.Modelo
                 comando.Parameters.AddWithValue("@apellido1", trabajador.Apellido1);
                 comando.Parameters.AddWithValue("@apellido2", trabajador.Apellido2);
                 comando.Parameters.AddWithValue("@correo_trabajador", trabajador.Correo);
-                comando.Parameters.AddWithValue("@fecha_contratacion", trabajador.Fecha_Contratacion);
+                comando.Parameters.AddWithValue("@fecha_contratacion", trabajador.FechaContratacion);
                 comando.Parameters.AddWithValue("@horario_trabajador", trabajador.Horario);
                 comando.Parameters.AddWithValue("@puesto_trabajador", trabajador.Puesto);
                 comando.Parameters.AddWithValue("@salario_trabajador", trabajador.Salario);
@@ -148,18 +148,19 @@ namespace Byte_Coffee.Modelo
                         Apellido1 = lector.GetString(1),
                         Apellido2 = lector.GetString(2),
                         Correo = lector.GetString(3),
-                        Fecha_Contratacion = lector.GetString(4),
+                        FechaContratacion = lector.GetString(4),
                         Horario = lector.GetString(5),
                         Puesto = lector.GetString(6),
                         Salario = lector.GetString(7)
                     };
                 }
+                conxBD.CerrarConexion();
             }
         }
         public bool ValidacionCampos(Trabajador trabajador)
         {
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
-            string sentencia = "SELECT correo_trabajador FROM trabajador  WHERE correo_trabajador=@correo LIMIT 1";
+            string sentencia = "SELECT correo_trabajador FROM trabajador WHERE correo_trabajador=@correo";
             NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
             comando.Parameters.AddWithValue("@correo", trabajador.Correo);
             NpgsqlDataReader lector = comando.ExecuteReader();
@@ -181,7 +182,6 @@ namespace Byte_Coffee.Modelo
             {
                 MessageBox.Show("El correo ya existe");
                 conxBD.CerrarConexion();
-
                 return false;
             }
             else

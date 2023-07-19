@@ -10,7 +10,7 @@ namespace Byte_Coffee.Controlador
 {
     public class ControladorReserva
     {
-        ModeloReserva modelo_reserva;
+        readonly ModeloReserva modelo_reserva;
         public ControladorReserva()
         {
             modelo_reserva = new ModeloReserva();

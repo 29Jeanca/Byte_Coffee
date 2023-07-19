@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Title="Detalles"
         Height="500"
-        Width="400"
+        Width="880"
+        MaxHeight='500'
+        MaxWidth='880'
+        MinHeight='500'
+        MinWidth='680'
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
@@ -15,7 +19,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Etiquetas -->
         <Grid Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
