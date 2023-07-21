@@ -24,13 +24,14 @@ namespace Byte_Coffee.Vista
     public partial class V_GestionPlatillo : Window
     {
         private string imagenUrl;
-
+        private ControladorPlatillo controladorPlatillo;
         public V_GestionPlatillo()
         {
             InitializeComponent();
+            controladorPlatillo = new ControladorPlatillo();
         }
 
-        private async void BtnSeleccionarImagen_Click(object sender, RoutedEventArgs e)
+        private async void BtnSubirImagen_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp|Todos los archivos|*.*";
@@ -39,26 +40,36 @@ namespace Byte_Coffee.Vista
             {
                 string imagePath = openFileDialog.FileName;
                 imgPlatillo.Source = new BitmapImage(new Uri(imagePath));
-                imagenUrl = await ImgurUploader.UploadImageAsync(imagePath);
+                imagenUrl = await SubirImagenImgur.UploadImageAsync(imagePath);
             }
         }
 
         private void BtnAgregarPlatillo_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(imagenUrl);
-            string nombre = txtNombre.Text;
-            string categoria = txtCategoria.Text;
-            decimal precio = Convert.ToDecimal(txtPrecio.Text);
-            string descripcion = txtDescripcion.Text;
-
-            // Aquí puedes realizar la lógica para guardar los datos del platillo en la base de datos,
-            // junto con la URL de la imagen almacenada en Imgur (imagenUrl).
-            ConxBD conx = new ConxBD();
-            NpgsqlConnection connec = conx.EstablecerConexion();
-            string sentencia = "INSERT INTO platillo(imagen) VALUES(@imagen)";
-            NpgsqlCommand comando = new NpgsqlCommand(sentencia, connec);
-            comando.Parameters.Add("@imagen", NpgsqlTypes.NpgsqlDbType.Text).Value = imagenUrl;
-            comando.ExecuteNonQuery();
+            string nombre = TxtPlatillo.Text;
+            string categoria = TxtCategoria.Text;
+            decimal precio = decimal.Parse(TxtPrecioPlatillo.Text);
+            string descripcion = TxtDescripcionPlatillo.Text;
+            Platillo nuevoPlatillo = new Platillo()
+            {
+                Nombre = nombre,
+                Categoria = categoria,
+                Precio = precio,
+                Descripcion = descripcion,
+                Imagen = imagenUrl
+            };
+            controladorPlatillo.AgregarPlatillo(nuevoPlatillo);
+            VaciarCampos();
+            MessageBox.Show("Ingresado correctamente");
+        }
+        private void VaciarCampos()
+        {
+            TxtPlatillo.Text = "";
+            TxtCategoria.Text = "";
+            TxtPrecioPlatillo.Text = "";
+            TxtDescripcionPlatillo.Text = "";
+            imgPlatillo.Source = null;
         }
     }
 }

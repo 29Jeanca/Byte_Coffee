@@ -135,7 +135,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BD\ConxBD.cs" />
-    <Compile Include="Clases\ImgurUploader.cs" />
+    <Compile Include="Clases\SubirImagenImgur.cs" />
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Inventario.cs" />
     <Compile Include="Clases\Platillo.cs" />
@@ -145,14 +145,19 @@
     <Compile Include="Controlador\ControladorInicio.cs" />
     <Compile Include="Controlador\ControladorInventario.cs" />
     <Compile Include="Controlador\ControladorLogin.cs" />
+    <Compile Include="Controlador\ControladorPlatillo.cs" />
     <Compile Include="Controlador\ControladorReserva.cs" />
     <Compile Include="Controlador\ControladorTrabajador.cs" />
     <Compile Include="Modelo\ModeloCliente.cs" />
     <Compile Include="Modelo\ModeloInicio.cs" />
     <Compile Include="Modelo\ModeloInventario.cs" />
     <Compile Include="Modelo\ModeloLogin.cs" />
+    <Compile Include="Modelo\ModeloPlatillo.cs" />
     <Compile Include="Modelo\ModeloReserva.cs" />
     <Compile Include="Modelo\ModeloTrabajador.cs" />
+    <Compile Include="Vista\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\V_GestionPlatillo.xaml.cs">
       <DependentUpon>V_GestionPlatillo.xaml</DependentUpon>
     </Compile>
@@ -161,6 +166,9 @@
     </Compile>
     <Compile Include="Vista\V_DetallesTrabajador.xaml.cs">
       <DependentUpon>V_DetallesTrabajador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\s.xaml.cs">
+      <DependentUpon>s.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\V_Inicio.xaml.cs">
       <DependentUpon>V_Inicio.xaml</DependentUpon>
@@ -210,6 +218,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Vista\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\V_GestionPlatillo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -219,6 +231,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\V_DetallesTrabajador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\s.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

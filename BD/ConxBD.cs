@@ -11,25 +11,19 @@ namespace Byte_Coffee.BD
     public class ConxBD
     {
         NpgsqlConnection conexion = new NpgsqlConnection();
+
+        static String servidor = "mahmud.db.elephantsql.com";
+        static String nombre_base_datos = "xchvzdjj";
+        static String usuario = "xchvzdjj";
+        static String clave = "bPUPz1PviGoQ0n9vFAdM7mcydNGMkhDk";
+        static String puerto = "5432";
         /*
-        static String servidor = "containers-us-west-138.railway.app";
-        static String nombre_base_datos = "railway";
-        static String usuario = "postgres";
-        static String clave = "x2koH9jp9y2jl1w0YhC1";
-        static String puerto = "5967";
-        */
-        /* static String servidor = "kandula.db.elephantsql.com";
-            static String nombre_base_datos = "codrypen";
-            static String usuario = "codrypen";
-            static String clave = "b6mr_8WE-IIUAgNcAHLYGi3j7U6zUDGe";
-            static String puerto = "5432";
-          */
         static String servidor = "localhost";
         static String nombre_base_datos = "byte_coffee";
         static String usuario = "postgres";
         static String clave = "root";
         static String puerto = "5432";
-
+        */
         String urlConexion = "server=" + servidor + ";" + "port=" + puerto + ";" + "user id=" + usuario + ";" + "password=" + clave + ";" + "database=" + nombre_base_datos + ";";
 
         public NpgsqlConnection EstablecerConexion()

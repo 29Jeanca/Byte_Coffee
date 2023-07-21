@@ -17,6 +17,7 @@ namespace Byte_Coffee.Clases
         public string Horario { get; set; }
         public string FechaContratacion { get; set; }
         public string Salario { get; set; }
+        public string Imagen { get; set; }
     }
 
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Byte_Coffee.Clases;
+using Byte_Coffee.Controlador;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +17,18 @@ using System.Windows.Shapes;
 namespace Byte_Coffee.Vista
 {
     /// <summary>
-    /// Lógica de interacción para V_Inicio.xaml
+    /// Lógica de interacción para Menu.xaml
     /// </summary>
-    public partial class V_Inicio : Window
+    public partial class Menu : Window
     {
-        public V_Inicio()
+        private ControladorPlatillo controladorPlatillo;
+        public Menu()
         {
             InitializeComponent();
+            controladorPlatillo = new ControladorPlatillo();
+            List<Platillo> platillos = controladorPlatillo.CargarMenu();
+            listaPlatillos.ItemsSource = platillos;
         }
+
     }
 }

@@ -17,5 +17,6 @@ namespace Byte_Coffee.Clases
         public string UltimaReserva { get; set; }
         public string Email { get; set; }
         public string Clave { get; set; }
+        public string Imagen { get; set; }
     }
 }

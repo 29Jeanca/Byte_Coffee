@@ -11,7 +11,7 @@ namespace Byte_Coffee.Modelo
 {
     public class ModeloReserva
     {
-        private ConxBD conxBD;
+        private readonly ConxBD conxBD;
         public ModeloReserva()
         {
             conxBD = new ConxBD();

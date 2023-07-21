@@ -22,7 +22,9 @@ namespace Byte_Coffee.Vista
 
             if (controlador.ValidarAdmin(correo, clave))
             {
-                MessageBox.Show("FUNCA");
+                V_Inicio inicio = new V_Inicio();
+                inicio.Show();
+                this.Visibility = Visibility.Hidden;
             }
             else
             {
