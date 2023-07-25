@@ -11,11 +11,25 @@ namespace Byte_Coffee.Clases
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Apellido1 { get; set; }
+        public int Edad { get; set; }
+        public string HoraEntrada { get; set; }
+        public string HoraSalida { get; set; }
         public string Apellido2 { get; set; }
         public string Correo { get; set; }
         public string Puesto { get; set; }
         public string Horario { get; set; }
         public string FechaContratacion { get; set; }
+        public enum DiaSemana
+        {
+            Lunes,
+            Martes,
+            Miércoles,
+            Jueves,
+            Viernes,
+            Sábado,
+            Domingo
+        }
+        public List<DiaSemana> DiasLaborales { get; set; }
         public string Salario { get; set; }
         public string Imagen { get; set; }
     }

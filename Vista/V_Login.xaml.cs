@@ -1,5 +1,10 @@
 ﻿using Byte_Coffee.Controlador;
+using MaterialDesignThemes.Wpf;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
+using Byte_Coffee.Vista.PantallaCarga;
+using System.Windows.Input;
 
 namespace Byte_Coffee.Vista
 {
@@ -15,22 +20,28 @@ namespace Byte_Coffee.Vista
             controlador = new ControladorLogin();
         }
 
-        private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
+        private async void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
-            string correo = txtCorreo.Text;
+            Cursor = Cursors.AppStarting;
+            V_PantallaCarga carga = new V_PantallaCarga();
+            carga.Show();
+            string correo = txtCorreo.Text.ToLower();
             string clave = txtClave.Password;
 
-            if (controlador.ValidarAdmin(correo, clave))
+            if (await Task.Run(() => controlador.ValidarAdmin(correo, clave)))
             {
+
                 V_Inicio inicio = new V_Inicio();
                 inicio.Show();
-                this.Visibility = Visibility.Hidden;
+                this.Close();
             }
             else
             {
                 MessageBox.Show("NO FUNCA");
             }
 
+            carga.Close();
         }
+
     }
 }

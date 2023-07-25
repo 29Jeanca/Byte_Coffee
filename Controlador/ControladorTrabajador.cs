@@ -41,10 +41,10 @@ namespace Byte_Coffee.Controlador
         {
             modelo_trabajador.AgregarTrabajador(trabajador);
         }
-        public bool ValidacionCampos(Trabajador trabajador)
-        {
-            return modelo_trabajador.ValidacionCampos(trabajador);
-        }
+        //public bool ValidacionCampos(Trabajador trabajador)
+        //{
+        //    return modelo_trabajador.ValidacionCampos(trabajador);
+        //}
 
     }
 }

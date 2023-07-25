@@ -78,6 +78,7 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -112,6 +113,8 @@
       <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -124,6 +127,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -137,7 +141,6 @@
     <Compile Include="BD\ConxBD.cs" />
     <Compile Include="Clases\SubirImagenImgur.cs" />
     <Compile Include="Clases\Cliente.cs" />
-    <Compile Include="Clases\Inventario.cs" />
     <Compile Include="Clases\Platillo.cs" />
     <Compile Include="Clases\Reserva.cs" />
     <Compile Include="Clases\Trabajador.cs" />
@@ -158,6 +161,9 @@
     <Compile Include="Vista\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\PantallaCarga\V_PantallaCarga.xaml.cs">
+      <DependentUpon>V_PantallaCarga.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\V_GestionPlatillo.xaml.cs">
       <DependentUpon>V_GestionPlatillo.xaml</DependentUpon>
     </Compile>
@@ -167,20 +173,17 @@
     <Compile Include="Vista\V_DetallesTrabajador.xaml.cs">
       <DependentUpon>V_DetallesTrabajador.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\s.xaml.cs">
-      <DependentUpon>s.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vista\V_Inicio.xaml.cs">
       <DependentUpon>V_Inicio.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Vista\V_Inventario.xaml.cs">
-      <DependentUpon>V_Inventario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\V_Login.xaml.cs">
       <DependentUpon>V_Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\V_AgregarTrabajador.xaml.cs">
       <DependentUpon>V_AgregarTrabajador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\V_Menu.xaml.cs">
+      <DependentUpon>V_Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\V_Reservas.xaml.cs">
       <DependentUpon>V_Reservas.xaml</DependentUpon>
@@ -222,6 +225,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\PantallaCarga\V_PantallaCarga.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\V_GestionPlatillo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -234,15 +241,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\s.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Vista\V_Inicio.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vista\V_Inventario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -251,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\V_AgregarTrabajador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\V_Menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -17,13 +17,13 @@ namespace Byte_Coffee.BD
         static String usuario = "xchvzdjj";
         static String clave = "bPUPz1PviGoQ0n9vFAdM7mcydNGMkhDk";
         static String puerto = "5432";
-        /*
-        static String servidor = "localhost";
-        static String nombre_base_datos = "byte_coffee";
-        static String usuario = "postgres";
-        static String clave = "root";
-        static String puerto = "5432";
-        */
+
+        //static String servidor = "localhost";
+        //static String nombre_base_datos = "byte_coffee";
+        //static String usuario = "postgres";
+        //static String clave = "root";
+        //static String puerto = "5432";
+
         String urlConexion = "server=" + servidor + ";" + "port=" + puerto + ";" + "user id=" + usuario + ";" + "password=" + clave + ";" + "database=" + nombre_base_datos + ";";
 
         public NpgsqlConnection EstablecerConexion()

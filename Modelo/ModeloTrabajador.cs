@@ -126,72 +126,60 @@ namespace Byte_Coffee.Modelo
         }
         public void AgregarTrabajador(Trabajador trabajador)
         {
-            if (ValidacionCampos(trabajador))
-            {
-                NpgsqlConnection conexion = conxBD.EstablecerConexion();
-                string sentencia = "INSERT INTO trabajador (nombre, apellido1, apellido2, correo_trabajador, fecha_contratacion, horario_trabajador, puesto_trabajador, salario_trabajador) VALUES (@nombre, @apellido1,@apellido2,@correo_trabajador,@fecha_contratacion,@horario_trabajador,@puesto_trabajador,@salario_trabajador)";
-                NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
-                comando.Parameters.AddWithValue("@nombre", trabajador.Nombre);
-                comando.Parameters.AddWithValue("@apellido1", trabajador.Apellido1);
-                comando.Parameters.AddWithValue("@apellido2", trabajador.Apellido2);
-                comando.Parameters.AddWithValue("@correo_trabajador", trabajador.Correo);
-                comando.Parameters.AddWithValue("@fecha_contratacion", trabajador.FechaContratacion);
-                comando.Parameters.AddWithValue("@horario_trabajador", trabajador.Horario);
-                comando.Parameters.AddWithValue("@puesto_trabajador", trabajador.Puesto);
-                comando.Parameters.AddWithValue("@salario_trabajador", trabajador.Salario);
-                NpgsqlDataReader lector = comando.ExecuteReader();
-                while (lector.Read())
-                {
-                    _ = new Trabajador()
-                    {
-                        Nombre = lector.GetString(0),
-                        Apellido1 = lector.GetString(1),
-                        Apellido2 = lector.GetString(2),
-                        Correo = lector.GetString(3),
-                        FechaContratacion = lector.GetString(4),
-                        Horario = lector.GetString(5),
-                        Puesto = lector.GetString(6),
-                        Salario = lector.GetString(7)
-                    };
-                }
-                conxBD.CerrarConexion();
-            }
-        }
-        public bool ValidacionCampos(Trabajador trabajador)
-        {
+
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
-            string sentencia = "SELECT correo_trabajador FROM trabajador WHERE correo_trabajador=@correo";
-            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
-            comando.Parameters.AddWithValue("@correo", trabajador.Correo);
+            NpgsqlCommand comando = new NpgsqlCommand("CALL stored_procedures.agregar_trabajador(@p_nombre,@p_apellido1,@p_apellido2)", conexion);
+            comando.Parameters.AddWithValue("@p_nombre", trabajador.Nombre);
+            comando.Parameters.AddWithValue("@p_apellido1", trabajador.Apellido1);
+            comando.Parameters.AddWithValue("@p_apellido2", trabajador.Apellido2);
             NpgsqlDataReader lector = comando.ExecuteReader();
-            if (string.IsNullOrEmpty(trabajador.Nombre) || string.IsNullOrEmpty(trabajador.Apellido1) || string.IsNullOrEmpty(trabajador.Correo) ||
-                string.IsNullOrEmpty(trabajador.Puesto) || string.IsNullOrEmpty(trabajador.Horario) || string.IsNullOrEmpty(trabajador.Salario))
+            while (lector.Read())
             {
-                MessageBox.Show("Todos los campos deben ser completados.");
-                conxBD.CerrarConexion();
-                return false;
-            }
-            else if (!Regex.IsMatch(trabajador.Correo, emailRegex))
-            {
-                MessageBox.Show("El correo tiene un formato incorrecto");
-                conxBD.CerrarConexion();
+                _ = new Trabajador()
+                {
+                    Nombre = lector.GetString(0),
+                    Apellido1 = lector.GetString(1),
+                    Apellido2 = lector.GetString(2),
 
-                return false;
+                };
             }
-            else if (lector.Read())
-            {
-                MessageBox.Show("El correo ya existe");
-                conxBD.CerrarConexion();
-                return false;
-            }
-            else
-            {
-                MessageBox.Show("¡Trabajador Ingresado Correctamente!");
-                conxBD.CerrarConexion();
-                return true;
-            }
-
+            conxBD.CerrarConexion();
         }
+        //public bool ValidacionCampos(Trabajador trabajador)
+        //{
+        //    NpgsqlConnection conexion = conxBD.EstablecerConexion();
+        //    string sentencia = "SELECT correo_trabajador FROM trabajador WHERE correo_trabajador=@correo";
+        //    NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+        //    comando.Parameters.AddWithValue("@correo", trabajador.Correo);
+        //    NpgsqlDataReader lector = comando.ExecuteReader();
+        //    if (string.IsNullOrEmpty(trabajador.Nombre) || string.IsNullOrEmpty(trabajador.Apellido1) || string.IsNullOrEmpty(trabajador.Correo) ||
+        //        string.IsNullOrEmpty(trabajador.Puesto) || string.IsNullOrEmpty(trabajador.Horario) || string.IsNullOrEmpty(trabajador.Salario))
+        //    {
+        //        MessageBox.Show("Todos los campos deben ser completados.");
+        //        conxBD.CerrarConexion();
+        //        return false;
+        //    }
+        //    else if (!Regex.IsMatch(trabajador.Correo, emailRegex))
+        //    {
+        //        MessageBox.Show("El correo tiene un formato incorrecto");
+        //        conxBD.CerrarConexion();
+
+        //        return false;
+        //    }
+        //    else if (lector.Read())
+        //    {
+        //        MessageBox.Show("El correo ya existe");
+        //        conxBD.CerrarConexion();
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("¡Trabajador Ingresado Correctamente!");
+        //        conxBD.CerrarConexion();
+        //        return true;
+        //    }
+
+        //}
 
     }
 }

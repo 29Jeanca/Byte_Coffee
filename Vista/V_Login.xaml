@@ -65,6 +65,7 @@
                              Height="30"
                              VerticalAlignment="Center"
                              FontSize="15"
+                             Foreground='#fff'
                              Margin="0,5"
                              BorderThickness="1"
                              BorderBrush="#FFF" />
@@ -78,6 +79,7 @@
                     <PasswordBox x:Name="txtClave"
                                  Grid.Row='3'
                                  Height='30'
+                                 Foreground='#fff'
                                  VerticalAlignment='Center'
                                  FontSize='15'
                                  Margin='0,5'
@@ -94,9 +96,11 @@
                              Background='#ffff'
                              Foreground='#000'
                              BorderThickness='1' />
+
                 </Grid>
             </StackPanel>
         </Border>
+
     </Grid>
 
 </Window>

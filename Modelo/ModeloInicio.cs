@@ -17,36 +17,30 @@ namespace Byte_Coffee.Modelo
         {
             conxbd = new ConxBD();
         }
-        public int CantidadTrabajadores()
-        {
-            NpgsqlConnection conexion = conxbd.EstablecerConexion();
-            string sentencia = "SELECT COUNT(id) FROM trabajador";
-            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
-            object resultado = comando.ExecuteScalar();
-            int cantidadTrabajadores = Convert.ToInt32(resultado);
-            conxbd.CerrarConexion();
-            return cantidadTrabajadores;
-        }
         public int CantidadClientes()
         {
             NpgsqlConnection conexion = conxbd.EstablecerConexion();
-            string sentencia = "SELECT COUNT(id) FROM cliente";
-            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
-            object resultado = comando.ExecuteScalar();
-            int cantidadClientes = Convert.ToInt32(resultado);
+            NpgsqlCommand comando = new NpgsqlCommand("SELECT stored_procedures.cantidad_clientes()", conexion);
+            int cantidadClientes = Convert.ToInt32(comando.ExecuteScalar());
             conxbd.CerrarConexion();
             return cantidadClientes;
         }
-        public int CantidadPlatillos()
+        public int CantidadTrabajadores()
         {
             NpgsqlConnection conexion = conxbd.EstablecerConexion();
-            string sentencia = "SELECT COUNT(id) FROM menu";
-            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
-            object resultado = comando.ExecuteScalar();
-            int cantidadPlatillos = Convert.ToInt32(resultado);
+            NpgsqlCommand comando = new NpgsqlCommand("SELECT stored_procedures.cantidad_trabajadores()", conexion);
+            int cantidadTrabajadores = Convert.ToInt32(comando.ExecuteScalar());
             conxbd.CerrarConexion();
-            return cantidadPlatillos;
+            return cantidadTrabajadores;
         }
+        public int CantidadTotalPedidos()
+        {
+            NpgsqlConnection conexion = conxbd.EstablecerConexion();
+            NpgsqlCommand comando = new NpgsqlCommand("", conexion);
+
+            return 1;
+        }
+
 
     }
 }

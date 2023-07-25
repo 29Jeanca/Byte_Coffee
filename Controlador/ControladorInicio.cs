@@ -23,9 +23,6 @@ namespace Byte_Coffee.Controlador
         {
             return modelo_inicio.CantidadClientes();
         }
-        public int CantidadPlatillos()
-        {
-            return modelo_inicio.CantidadPlatillos();
-        }
+
     }
 }
