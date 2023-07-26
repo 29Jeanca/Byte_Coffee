@@ -16,5 +16,15 @@ namespace Byte_Coffee.Controlador
         {
             return modelo_login.ValidarAdmin(correo, clave);
         }
+
+        public (int, string) TomarDatosCliente(string correo)
+        {
+            return modelo_login.TomarDatosCliente(correo);
+        }
+
+        public bool ValidarUsuario(string correo, string clave)
+        {
+            return modelo_login.ValidarUsuario(correo, clave);
+        }
     }
 }

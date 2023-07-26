@@ -28,6 +28,8 @@ namespace Byte_Coffee.Vista
             controladorPlatillo = new ControladorPlatillo();
             List<Platillo> platillos = controladorPlatillo.CargarMenu();
             listaPlatillos.ItemsSource = platillos;
+            int id = Sesion.IdCliente;
+            MessageBox.Show(id + "");
         }
 
     }

@@ -88,7 +88,7 @@
                     <Button  x:Name="btnIniciarSesion"
                              Click="btnIniciarSesion_Click"
                              Grid.Row='5'
-                             VerticalAlignment='Center'
+                             VerticalAlignment='Bottom'
                              HorizontalAlignment='Center'
                              Width='144'
                              Height='40'

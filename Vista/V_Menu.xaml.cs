@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Byte_Coffee.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,9 @@ namespace Byte_Coffee.Vista
         public V_Menu()
         {
             InitializeComponent();
+            var id = Sesion.IdCliente;
+            var nombre = Sesion.Nombre;
+            MessageBox.Show($"Este es el id{id} y este es el nombre{nombre}");
         }
     }
 }

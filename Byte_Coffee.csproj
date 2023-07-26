@@ -139,6 +139,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BD\ConxBD.cs" />
+    <Compile Include="Clases\Sesion.cs" />
     <Compile Include="Clases\SubirImagenImgur.cs" />
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Platillo.cs" />
@@ -146,14 +147,12 @@
     <Compile Include="Clases\Trabajador.cs" />
     <Compile Include="Controlador\ControladorCliente.cs" />
     <Compile Include="Controlador\ControladorInicio.cs" />
-    <Compile Include="Controlador\ControladorInventario.cs" />
     <Compile Include="Controlador\ControladorLogin.cs" />
     <Compile Include="Controlador\ControladorPlatillo.cs" />
     <Compile Include="Controlador\ControladorReserva.cs" />
     <Compile Include="Controlador\ControladorTrabajador.cs" />
     <Compile Include="Modelo\ModeloCliente.cs" />
     <Compile Include="Modelo\ModeloInicio.cs" />
-    <Compile Include="Modelo\ModeloInventario.cs" />
     <Compile Include="Modelo\ModeloLogin.cs" />
     <Compile Include="Modelo\ModeloPlatillo.cs" />
     <Compile Include="Modelo\ModeloReserva.cs" />
@@ -164,11 +163,11 @@
     <Compile Include="Vista\PantallaCarga\V_PantallaCarga.xaml.cs">
       <DependentUpon>V_PantallaCarga.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\V_CrearUsuario.xaml.cs">
+      <DependentUpon>V_CrearUsuario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\V_GestionPlatillo.xaml.cs">
       <DependentUpon>V_GestionPlatillo.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Vista\V_Clientes.xaml.cs">
-      <DependentUpon>V_Clientes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\V_DetallesTrabajador.xaml.cs">
       <DependentUpon>V_DetallesTrabajador.xaml</DependentUpon>
@@ -182,11 +181,11 @@
     <Compile Include="Vista\V_AgregarTrabajador.xaml.cs">
       <DependentUpon>V_AgregarTrabajador.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\V_LoginCliente.xaml.cs">
+      <DependentUpon>V_LoginCliente.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\V_Menu.xaml.cs">
       <DependentUpon>V_Menu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Vista\V_Reservas.xaml.cs">
-      <DependentUpon>V_Reservas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\V_Trabajador.xaml.cs">
       <DependentUpon>V_Trabajador.xaml</DependentUpon>
@@ -229,11 +228,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\V_GestionPlatillo.xaml">
+    <Page Include="Vista\V_CrearUsuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\V_Clientes.xaml">
+    <Page Include="Vista\V_GestionPlatillo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,11 +252,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\V_Menu.xaml">
+    <Page Include="Vista\V_LoginCliente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\V_Reservas.xaml">
+    <Page Include="Vista\V_Menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

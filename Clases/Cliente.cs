@@ -12,11 +12,10 @@ namespace Byte_Coffee.Clases
         public string Nombre { get; set; }
         public string Apellido1 { get; set; }
         public string Apellido2 { get; set; }
-        public string Num_Telefonico { get; set; }
-        public string FechaRegistro { get; set; }
-        public string UltimaReserva { get; set; }
+        public string Fecha_Nacimiento { get; set; }
+        public string Fecha_Registro { get; set; }
+        public string Ultima_Reserva { get; set; }
         public string Email { get; set; }
         public string Clave { get; set; }
-        public string Imagen { get; set; }
     }
 }

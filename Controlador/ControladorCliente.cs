@@ -1,5 +1,4 @@
 ﻿using Byte_Coffee.Clases;
-using Byte_Coffee.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +9,20 @@ namespace Byte_Coffee.Controlador
 {
     public class ControladorCliente
     {
-        private ModeloCliente modeloCliente;
-
+        private ModeloCliente modeloCiente;
         public ControladorCliente()
         {
-            modeloCliente = new ModeloCliente();
+            modeloCiente = new ModeloCliente();
         }
-        public List<Cliente> ClientesRegistrados()
+        public void AgregarCliente(Cliente cliente)
         {
-            return modeloCliente.ObtenerClientes();
+            modeloCiente.AgregarCliente(cliente);
+
         }
-        public List<Cliente> ClientesFiltrados(string filtro)
+        public bool ValidacionCampos(Cliente cliente)
         {
-            return modeloCliente.FiltrarOrdenAlfabetico(filtro);
+            return modeloCiente.ValidacionCampos(cliente);
         }
+
     }
 }

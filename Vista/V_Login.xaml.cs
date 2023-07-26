@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using Byte_Coffee.Vista.PantallaCarga;
 using System.Windows.Input;
+using Byte_Coffee.BD;
+using Npgsql;
+using System;
+using Byte_Coffee.Clases;
 
 namespace Byte_Coffee.Vista
 {
@@ -14,10 +18,12 @@ namespace Byte_Coffee.Vista
     public partial class Login : Window
     {
         private ControladorLogin controlador;
+        private ConxBD conx;
         public Login()
         {
             InitializeComponent();
             controlador = new ControladorLogin();
+            conx = new ConxBD();
         }
 
         private async void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
@@ -27,13 +33,17 @@ namespace Byte_Coffee.Vista
             carga.Show();
             string correo = txtCorreo.Text.ToLower();
             string clave = txtClave.Password;
-
+            NpgsqlConnection conexion = conx.EstablecerConexion();
+            string sentencia = "SELECT id FROM admin WHERE correo=@correo";
+            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+            comando.Parameters.AddWithValue("@correo", correo);
+            int idAdmin = Convert.ToInt32(comando.ExecuteScalar());
             if (await Task.Run(() => controlador.ValidarAdmin(correo, clave)))
             {
-
                 V_Inicio inicio = new V_Inicio();
                 inicio.Show();
                 this.Close();
+
             }
             else
             {
