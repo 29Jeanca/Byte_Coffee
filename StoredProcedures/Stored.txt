@@ -1,0 +1,55 @@
+﻿CREATE OR REPLACE FUNCTION stored_procedures.detalles_trabajador_completo(id int)
+RETURNS TABLE(
+	nombre text,
+	correo varchar,
+	hora_entrada varchar,
+	hora_salida varchar,
+	imagen varchar,
+	fecha_contratacion date,
+	edad INT,
+	puesto varchar,
+	dia_entrada varchar,
+	dia_salida varchar,
+	fecha_nacimiento date,
+	salario decimal(10,2)
+) AS $$
+BEGIN
+	RETURN QUERY
+	SELECT
+		trabajador.nombre || ' ' || trabajador.apellido1 || ' ' || trabajador.apellido2 as nombre,
+		trabajador.correo,
+		trabajador.hora_entrada,
+		trabajador.hora_salida,
+		trabajador.imagen,
+		trabajador.fecha_contratacion,
+		trabajador.edad,
+		trabajador.puesto,
+		trabajador.dia_entrada,
+		trabajador.dia_salida,
+		trabajador.fecha_nacimiento,
+		trabajador.salario
+	FROM trabajador
+	WHERE trabajador.id = detalles_trabajador_completo.id;
+END;
+$$ LANGUAGE PLPGSQL;
+
+		CREATE OR REPLACE FUNCTION stored_procedures.detalles_trabajador()
+RETURNS TABLE(
+	id int,
+	nombre text,
+	puesto varchar,
+	salario decimal(10,2)
+) AS $$
+BEGIN
+	RETURN QUERY
+	SELECT
+		trabajador.id,
+		trabajador.nombre || ' ' || trabajador.apellido1 as nombre,
+		trabajador.puesto,
+		trabajador.salario
+	FROM trabajador;
+END;
+$$ LANGUAGE PLPGSQL;
+
+		SELECT * from stored_procedures.detalles_trabajador();
+		SELECT * from stored_procedures.detalles_trabajador_completo(2);

@@ -215,7 +215,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="StoredProcedures\Stored.txt" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Vista\PantallaCarga\V_PantallaCarga.xaml">
       <SubType>Designer</SubType>

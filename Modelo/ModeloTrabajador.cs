@@ -67,9 +67,8 @@ namespace Byte_Coffee.Modelo
                 {
                     Id = lector.GetInt16(0),
                     Nombre = lector.GetString(1),
-                    Apellido1 = lector.GetString(2),
-                    Puesto = lector.GetString(3),
-                    Salario = lector.GetDecimal(4)
+                    Puesto = lector.GetString(2),
+                    Salario = lector.GetDecimal(3)
                 };
                 trabajadores.Add(trabajador);
             }
@@ -96,19 +95,17 @@ namespace Byte_Coffee.Modelo
                 Trabajador trabajador = new Trabajador()
                 {
                     Nombre = lector.GetString(0),
-                    Apellido1 = lector.GetString(1),
-                    Apellido2 = lector.GetString(2),
-                    Correo = lector.GetString(3),
-                    HoraEntrada = lector.GetString(4),
-                    HoraSalida = lector.GetString(5),
-                    Imagen = lector.GetString(6),
-                    FechaContratacion = lector.GetDateTime(7).ToString("dd/MM/yyyy"),
-                    Edad = lector.GetInt32(8),
-                    Puesto = lector.GetString(9),
-                    DiaEntrada = lector.GetString(10),
-                    DiaSalida = lector.GetString(11),
-                    FechaNacimiento = lector.GetDateTime(12).ToString("dd/MM/yyyy"),
-                    Salario = lector.GetDecimal(13)
+                    Correo = lector.GetString(1),
+                    HoraEntrada = lector.GetString(2),
+                    HoraSalida = lector.GetString(3),
+                    Imagen = lector.GetString(4),
+                    FechaContratacion = lector.GetDateTime(5).ToString("dd/MM/yyyy"),
+                    Edad = lector.GetInt32(6),
+                    Puesto = lector.GetString(7),
+                    DiaEntrada = lector.GetString(8),
+                    DiaSalida = lector.GetString(9),
+                    FechaNacimiento = lector.GetDateTime(10).ToString("dd/MM/yyyy"),
+                    Salario = lector.GetDecimal(11)
                 };
                 trabajadors.Add(trabajador);
 

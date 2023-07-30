@@ -68,10 +68,6 @@
                                    Grid.Column="0"
                                    Margin="10"
                                    Foreground="Black" />
-                        <TextBlock Text="{Binding Apellido1}"
-                                   Grid.Column="1"
-                                   Margin="10"
-                                   Foreground="Black" />
                         <TextBlock Text="{Binding Puesto}"
                                    Grid.Column="2"
                                    Margin="10"
