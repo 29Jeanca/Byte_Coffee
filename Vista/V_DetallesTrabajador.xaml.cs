@@ -23,6 +23,7 @@ namespace Byte_Coffee.Vista
         public V_DetallesTrabajador(List<Trabajador> trabajadors)
         {
             InitializeComponent();
+            VistaTrabajador.ItemsSource = trabajadors;
         }
     }
 }

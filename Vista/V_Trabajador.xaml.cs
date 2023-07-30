@@ -43,18 +43,18 @@ namespace Byte_Coffee.Vista
 
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            var siNo = MessageBox.Show("¿Está seguro que desea eliminar al trabajador?", "IMPORTANTE", MessageBoxButton.YesNo);
-            if (siNo == MessageBoxResult.Yes)
-            {
-                Button btnEliminar = (Button)sender;
-                Trabajador trabajador = (Trabajador)btnEliminar.DataContext;
-                int idTrabajador = trabajador.Id;
+            //var siNo = MessageBox.Show("¿Está seguro que desea eliminar al trabajador?", "IMPORTANTE", MessageBoxButton.YesNo);
+            //if (siNo == MessageBoxResult.Yes)
+            //{
+            //    Button btnEliminar = (Button)sender;
+            //    Trabajador trabajador = (Trabajador)btnEliminar.DataContext;
+            //    int idTrabajador = trabajador.Id;
 
-                controladorTrabajador.EliminarTrabajador(idTrabajador);
+            //    controladorTrabajador.EliminarTrabajador(idTrabajador);
 
-                List<Trabajador> trabajadores = controladorTrabajador.ObtenerDatosTrabajador();
-                listaTrabajadores.ItemsSource = trabajadores;
-            }
+            //    List<Trabajador> trabajadores = controladorTrabajador.ObtenerDatosTrabajador();
+            //    listaTrabajadores.ItemsSource = trabajadores;
+            //}
         }
         private void Puestos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

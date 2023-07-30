@@ -9,112 +9,115 @@
         Title="Detalles"
         Height="500"
         Width="880"
-        MaxHeight='500'
-        MaxWidth='880'
-        MinHeight='500'
-        MinWidth='680'
         WindowStartupLocation="CenterOwner">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <GroupBox Margin="16"
-                  materialDesign:ColorZoneAssist.Mode="Dark"
-                  Header="Card Group Box Secondary"
-                  Style="{StaticResource MaterialDesignCardGroupBox}">
-            <GroupBox.HeaderTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Width="32"
-                                                 Height="32"
-                                                 VerticalAlignment="Center"
-                                                 Kind="Person" />
-                        <TextBlock Margin="8,0,0,0"
-                                   VerticalAlignment="Center"
-                                   Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
-                                   Text="{Binding Nombre}" />
+    <ListBox x:Name='VistaTrabajador'>
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <GroupBox Margin="16"
+                              materialDesign:ColorZoneAssist.Mode="Dark"
+                              Header="Card Group Box Secondary"
+                              x:Name="GroupBoxTrabajador"
+                              Style="{StaticResource MaterialDesignCardGroupBox}">
+                        <GroupBox.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Width="32"
+                                                             Height="32"
+                                                             VerticalAlignment="Center"
+                                                             Kind="Person" />
+                                    <TextBlock Margin="8,0,0,0"
+                                               VerticalAlignment="Center"
+                                               Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                               Text="{Binding Nombre}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupBox.HeaderTemplate>
+                        <Image HorizontalAlignment="Left"
+                               Stretch='None'
+                               Source="{Binding Imagen}" />
+                    </GroupBox>
+                    <StackPanel HorizontalAlignment='Center'
+                                VerticalAlignment='Center'
+                                Width='auto'>
+                        <Grid HorizontalAlignment='Center'
+                              VerticalAlignment='Center'
+                              Width='433'
+                              Margin='203,50,0,0'>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height='*' />
+                                <RowDefinition Height='*' />
+                                <RowDefinition Height='*' />
+                                <RowDefinition Height='*' />
+                                <RowDefinition Height='*' />
+                                <RowDefinition Height='*' />
+                                <RowDefinition Height='*' />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBox Grid.Row='0'
+                                     VerticalAlignment="Top"
+                                     materialDesign:HintAssist.Hint="Correo"
+                                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                                     TextWrapping="Wrap"
+                                     Text='{Binding Correo}'
+                                     IsEnabled='False' />
+                            <TextBox Grid.Row='1'
+                                     VerticalAlignment="Top"
+                                     materialDesign:HintAssist.Hint="Edad"
+                                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                                     TextWrapping="Wrap"
+                                     IsEnabled='False'
+                                     Text='{Binding Edad}' />
+                            <TextBox Grid.Row='2'
+                                     VerticalAlignment="Top"
+                                     materialDesign:HintAssist.Hint="Hora entrada"
+                                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                                     TextWrapping="Wrap"
+                                     IsEnabled='False'
+                                     Text='{Binding HoraEntrada}' />
+                            <TextBox Grid.Row='3'
+                                     VerticalAlignment="Top"
+                                     materialDesign:HintAssist.Hint="Hora salida"
+                                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                                     TextWrapping="Wrap"
+                                     IsEnabled='False'
+                                     Text='{Binding HoraSalida}' />
+                            <TextBox Grid.Row='4'
+                                     VerticalAlignment="Top"
+                                     materialDesign:HintAssist.Hint="Puesto"
+                                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                                     TextWrapping="Wrap"
+                                     IsEnabled='False'
+                                     Text='{Binding Puesto}' />
+                            <TextBox Grid.Row='5'
+                                     VerticalAlignment="Top"
+                                     materialDesign:HintAssist.Hint="Salario"
+                                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                                     TextWrapping="Wrap"
+                                     IsEnabled='False'
+                                     Text='{Binding Salario}' />
+                            <TextBox Grid.Row='6'
+                                     VerticalAlignment="Top"
+                                     materialDesign:HintAssist.Hint="Día entrada"
+                                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                                     TextWrapping="Wrap"
+                                     IsEnabled='False'
+                                     Text='{Binding DiaEntrada}' />
+                            <TextBox Grid.Row='7'
+                                     VerticalAlignment="Top"
+                                     materialDesign:HintAssist.Hint="Día salida"
+                                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                                     TextWrapping="Wrap"
+                                     IsEnabled='False'
+                                     Text='{Binding DiaSalida}' />
+                        </Grid>
                     </StackPanel>
-                </DataTemplate>
-            </GroupBox.HeaderTemplate>
-            <Image HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   Source="{Binding Imagen}" />
-        </GroupBox>
-        <StackPanel HorizontalAlignment='Center'
-                    VerticalAlignment='Center'
-                    Width='auto'>
-            <Grid HorizontalAlignment='Center'
-                  VerticalAlignment='Center'
-                  Width='433'
-                  Margin='203,50,0,0'>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height='*' />
-                    <RowDefinition Height='*' />
-                    <RowDefinition Height='*' />
-                    <RowDefinition Height='*' />
-                    <RowDefinition Height='*' />
-                    <RowDefinition Height='*' />
-                    <RowDefinition Height='*' />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBox Grid.Row='0'
-                         VerticalAlignment="Top"
-                         materialDesign:HintAssist.Hint="Correo"
-                         Style="{StaticResource MaterialDesignFilledTextBox}"
-                         TextWrapping="Wrap"
-                         Text='{Binding Correo}'
-                         IsEnabled='False' />
-                <TextBox Grid.Row='1'
-                         VerticalAlignment="Top"
-                         materialDesign:HintAssist.Hint="Edad"
-                         Style="{StaticResource MaterialDesignFilledTextBox}"
-                         TextWrapping="Wrap"
-                         IsEnabled='False'
-                         Text='{Binding Edad}' />
-                <TextBox Grid.Row='2'
-                         VerticalAlignment="Top"
-                         materialDesign:HintAssist.Hint="Hora entrada"
-                         Style="{StaticResource MaterialDesignFilledTextBox}"
-                         TextWrapping="Wrap"
-                         IsEnabled='False'
-                         Text='{Binding Hora_entrada}' />
-                <TextBox Grid.Row='3'
-                         VerticalAlignment="Top"
-                         materialDesign:HintAssist.Hint="Hora salida"
-                         Style="{StaticResource MaterialDesignFilledTextBox}"
-                         TextWrapping="Wrap"
-                         IsEnabled='False'
-                         Text='{Binding Hora_salida}' />
-                <TextBox Grid.Row='4'
-                         VerticalAlignment="Top"
-                         materialDesign:HintAssist.Hint="Puesto"
-                         Style="{StaticResource MaterialDesignFilledTextBox}"
-                         TextWrapping="Wrap"
-                         IsEnabled='False'
-                         Text='{Binding Puesto}' />
-                <TextBox Grid.Row='5'
-                         VerticalAlignment="Top"
-                         materialDesign:HintAssist.Hint="Salario"
-                         Style="{StaticResource MaterialDesignFilledTextBox}"
-                         TextWrapping="Wrap"
-                         IsEnabled='False'
-                         Text='{Binding Salario}' />
-                <TextBox Grid.Row='6'
-                         VerticalAlignment="Top"
-                         materialDesign:HintAssist.Hint="Día entrada"
-                         Style="{StaticResource MaterialDesignFilledTextBox}"
-                         TextWrapping="Wrap"
-                         IsEnabled='False'
-                         Text='{Binding Dia_entrada}' />
-                <TextBox Grid.Row='7'
-                         VerticalAlignment="Top"
-                         materialDesign:HintAssist.Hint="Día salida"
-                         Style="{StaticResource MaterialDesignFilledTextBox}"
-                         TextWrapping="Wrap"
-                         IsEnabled='False'
-                         Text='{Binding Dia_salida}' />
-            </Grid>
-        </StackPanel>
 
-    </Grid>
+                </Grid>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
 </Window>

@@ -44,8 +44,7 @@ namespace Byte_Coffee.Modelo
         {
             List<Platillo> menu = new List<Platillo>();
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
-            string sentencia = "SELECT nombre,precio,descripcion,imagen FROM  platillo";
-            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+            NpgsqlCommand comando = new NpgsqlCommand("SELECT * FROM stored_procedures.cargar_menu()", conexion);
             NpgsqlDataReader lector = comando.ExecuteReader();
             while (lector.Read())
             {

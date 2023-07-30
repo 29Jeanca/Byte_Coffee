@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:wpftk='http://schemas.microsoft.com/netfx/2009/xaml/presentation'
         Title="Agregar un nuevo trabajador"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
@@ -29,14 +30,15 @@
                Grid.Column='0'
                Grid.RowSpan="8"
                Height='600'
-               Width='500'
-               Source='https://i.imgur.com/m1ZbynN.jpg'
-               Stretch="UniformToFill"
-               HorizontalAlignment='Stretch'
-               VerticalAlignment='Stretch' />
+               Width='350'
+               x:Name='imgTrabajador'
+               Stretch="Fill" />
 
         <Button Grid.Row="6"
                 Width='190'
+                x:Name='BtnSubirImagen'
+                Click='BtnSubirImagen_Click'
+                ToolTip='Sube una imagen'
                 HorizontalAlignment='Left'
                 VerticalAlignment='Top'
                 Margin='124,43,0,0'
@@ -52,29 +54,34 @@
                     Margin="50,0,50,0">
 
             <TextBox materialDesign:HintAssist.Hint="Nombre"
+                     x:Name='TxtNombre'
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Height='36' />
 
             <TextBox materialDesign:HintAssist.Hint="Apellido1"
+                     x:Name='TxtApellido1'
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Height='36'
                      Margin='0,10,0,0' />
 
             <TextBox materialDesign:HintAssist.Hint="Apellido2"
+                     x:Name='TxtApellido2'
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Height='36'
                      Margin='0,10,0,0' />
 
             <TextBox materialDesign:HintAssist.Hint="Correo"
+                     x:Name='TxtCorreo'
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Height='36'
                      Margin='0,10,0,0' />
 
-            <DatePicker materialDesign:HintAssist.Hint="Fecha de nacimiento"
-                        materialDesign:TextFieldAssist.HasClearButton="True"
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                        Height='36'
-                        Margin='0,10,0,0' />
+            <wpftk:DatePicker x:Name="fecha_nacimiento"
+                              Width="365"
+                              materialDesign:HintAssist.Hint="Seleccione la fecha"
+                              Style="{StaticResource MaterialDesignFilledDatePicker}"
+                              Margin="0,10,0,2"
+                              BorderThickness="2,2,2,2" />
             <materialDesign:TimePicker x:Name="HoraEntrada"
                                        Text='Hora salida'
                                        Is24Hours="True"
@@ -92,24 +99,30 @@
             <TextBox materialDesign:HintAssist.Hint="Puesto"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Height='36'
-                     Margin='0,10,0,0' />
+                     Margin='0,10,0,0'
+                     x:Name='TxtPuesto' />
 
             <TextBox materialDesign:HintAssist.Hint="Salario"
+                     x:Name='TxtSalario'
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Height='36'
                      Margin='0,10,0,0' />
 
             <StackPanel Orientation="Horizontal">
-                <TextBox materialDesign:HintAssist.Hint="Día entrada"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         Width="100"
-                         Height='36' />
+                <ComboBox materialDesign:HintAssist.Hint="Día entrada"
+                          Width="140"
+                          Height='36'
+                          Text='Día entrada'
+                          x:Name='ComboDiaEntrada'
+                          ToolTip='Día entrada'
+                          Margin='10,0,0,0' />
 
-                <TextBox materialDesign:HintAssist.Hint="Día salida"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         Width="100"
-                         Height='36'
-                         Margin='10,0,0,0' />
+                <ComboBox materialDesign:HintAssist.Hint="Día salida"
+                          Width="100"
+                          Height='36'
+                          Margin='10,0,0,0'
+                          x:Name='ComboDiaSalida'
+                          ToolTip='Día salida' />
             </StackPanel>
 
         </StackPanel>
@@ -119,6 +132,8 @@
                 BorderBrush='Transparent'
                 Width='200'
                 Grid.Column='1'
+                x:Name='BtnAgregarTrabajador'
+                Click='BtnAgregarTrabajador_Click'
                 Grid.Row='6'
                 ToolTip="Agrega el trabajador">
             <TextBlock Text="Agregar trabajador" />

@@ -17,21 +17,13 @@ namespace Byte_Coffee.Clases
         public string Apellido2 { get; set; }
         public string Correo { get; set; }
         public string Puesto { get; set; }
-        public string Horario { get; set; }
         public string FechaContratacion { get; set; }
-        public enum DiaSemana
-        {
-            Lunes,
-            Martes,
-            Miércoles,
-            Jueves,
-            Viernes,
-            Sábado,
-            Domingo
-        }
-        public List<DiaSemana> DiasLaborales { get; set; }
-        public string Salario { get; set; }
+        public decimal Salario { get; set; }
         public string Imagen { get; set; }
+        public string DiaEntrada { get; set; }
+        public string DiaSalida { get; set; }
+        public string FechaNacimiento { get; set; }
+
     }
 
 }

@@ -49,12 +49,12 @@ namespace Byte_Coffee.Vista
         private void btnSign_Click(object sender, RoutedEventArgs e)
         {
             DateTime fechaActual = DateTime.Now;
-            string txt = fecha_nacimiento.SelectedDate.Value.Date.ToString("dd/MM/yyyy");
+            string fechaConvertida = fecha_nacimiento.SelectedDate.Value.Date.ToString("dd/MM/yyyy");
             int dia, mes, year;
             string nombre = txtNombre.Text;
             string apellido1 = txtApellido1.Text;
             string apellido2 = txtApellido2.Text;
-            string fnacimiento = txt;
+            string fnacimiento = fechaConvertida;
             string correo = txtcorreo.Text;
             string clave = txtclave.Password;
             dia = fechaActual.Day;

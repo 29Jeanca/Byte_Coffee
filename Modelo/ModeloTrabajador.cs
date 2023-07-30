@@ -1,13 +1,8 @@
 ﻿using Byte_Coffee.BD;
 using Byte_Coffee.Clases;
 using Npgsql;
-using System;
+using NpgsqlTypes;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace Byte_Coffee.Modelo
 {
@@ -25,12 +20,9 @@ namespace Byte_Coffee.Modelo
         public List<string> LlenarComboBox()
         {
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
-            string sentencia = "SELECT DISTINCT puesto_trabajador FROM trabajador";
-            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+            NpgsqlCommand comando = new NpgsqlCommand("SELECT * FROM stored_procedures.llenar_puestos()", conexion);
             NpgsqlDataReader lector = comando.ExecuteReader();
-
             List<string> puestos = new List<string>();
-
             while (lector.Read())
             {
                 string puesto = lector.GetString(0);
@@ -44,9 +36,8 @@ namespace Byte_Coffee.Modelo
         {
             List<Trabajador> trabajadors = new List<Trabajador>();
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
-            string sentencia = "SELECT id,nombre,apellido1,puesto_trabajador,salario_trabajador FROM trabajador WHERE puesto_trabajador=@puesto_trabajador";
-            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
-            comando.Parameters.AddWithValue("@puesto_trabajador", Puesto);
+            NpgsqlCommand comando = new NpgsqlCommand("SELECT * FROM stored_procedures.filtrar_puestos(@puesto)", conexion);
+            comando.Parameters.AddWithValue("@puesto", Puesto);
             NpgsqlDataReader lector = comando.ExecuteReader();
             while (lector.Read())
             {
@@ -56,7 +47,7 @@ namespace Byte_Coffee.Modelo
                     Nombre = lector.GetString(1),
                     Apellido1 = lector.GetString(2),
                     Puesto = lector.GetString(3),
-                    Salario = lector.GetString(4),
+                    Salario = lector.GetDecimal(4),
                 };
                 trabajadors.Add(trabajador);
             }
@@ -68,8 +59,7 @@ namespace Byte_Coffee.Modelo
         {
             List<Trabajador> trabajadores = new List<Trabajador>();
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
-            string sentencia = "SELECT id,nombre,apellido1,puesto_trabajador,salario_trabajador FROM trabajador";
-            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+            NpgsqlCommand comando = new NpgsqlCommand("SELECT * FROM stored_procedures.detalles_trabajador()", conexion);
             NpgsqlDataReader lector = comando.ExecuteReader();
             while (lector.Read())
             {
@@ -79,19 +69,17 @@ namespace Byte_Coffee.Modelo
                     Nombre = lector.GetString(1),
                     Apellido1 = lector.GetString(2),
                     Puesto = lector.GetString(3),
-                    Salario = lector.GetString(4)
+                    Salario = lector.GetDecimal(4)
                 };
                 trabajadores.Add(trabajador);
             }
             conxBD.CerrarConexion();
             return trabajadores;
-
         }
         public void EliminarTrabajador(int id)
         {
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
-            string sentencia = "DELETE FROM trabajador WHERE id = @id";
-            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+            NpgsqlCommand comando = new NpgsqlCommand("SELECT stored_procedures.eliminar_trabajador(@id)", conexion);
             comando.Parameters.AddWithValue("@id", id);
             comando.ExecuteNonQuery();
             conxBD.CerrarConexion();
@@ -100,9 +88,7 @@ namespace Byte_Coffee.Modelo
         {
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
             List<Trabajador> trabajadors = new List<Trabajador>();
-            string sentencia = "SELECT nombre,apellido1,apellido2,correo_trabajador,fecha_contratacion," +
-                "horario_trabajador,puesto_trabajador,salario_trabajador FROM trabajador WHERE id= @id";
-            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+            NpgsqlCommand comando = new NpgsqlCommand("SELECT * FROM stored_procedures.detalles_trabajador_completo(@id)", conexion);
             comando.Parameters.AddWithValue("@id", id);
             NpgsqlDataReader lector = comando.ExecuteReader();
             while (lector.Read())
@@ -113,10 +99,16 @@ namespace Byte_Coffee.Modelo
                     Apellido1 = lector.GetString(1),
                     Apellido2 = lector.GetString(2),
                     Correo = lector.GetString(3),
-                    FechaContratacion = lector.GetString(4),
-                    Horario = lector.GetString(5),
-                    Puesto = lector.GetString(6),
-                    Salario = lector.GetString(7)
+                    HoraEntrada = lector.GetString(4),
+                    HoraSalida = lector.GetString(5),
+                    Imagen = lector.GetString(6),
+                    FechaContratacion = lector.GetDateTime(7).ToString("dd/MM/yyyy"),
+                    Edad = lector.GetInt32(8),
+                    Puesto = lector.GetString(9),
+                    DiaEntrada = lector.GetString(10),
+                    DiaSalida = lector.GetString(11),
+                    FechaNacimiento = lector.GetDateTime(12).ToString("dd/MM/yyyy"),
+                    Salario = lector.GetDecimal(13)
                 };
                 trabajadors.Add(trabajador);
 
@@ -126,12 +118,22 @@ namespace Byte_Coffee.Modelo
         }
         public void AgregarTrabajador(Trabajador trabajador)
         {
-
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
-            NpgsqlCommand comando = new NpgsqlCommand("CALL stored_procedures.agregar_trabajador(@p_nombre,@p_apellido1,@p_apellido2)", conexion);
-            comando.Parameters.AddWithValue("@p_nombre", trabajador.Nombre);
-            comando.Parameters.AddWithValue("@p_apellido1", trabajador.Apellido1);
-            comando.Parameters.AddWithValue("@p_apellido2", trabajador.Apellido2);
+            NpgsqlCommand comando = new NpgsqlCommand("CALL stored_procedures.crear_trabajador(@nombre,@apellido1,@apellido2,@correo,@hora_entrada,@hora_salida,@imagen,@fecha_contratacion,@edad,@puesto,@dia_entrada,@dia_salida,@fecha_nacimiento,@salario)", conexion);
+            comando.Parameters.AddWithValue("@nombre", trabajador.Nombre);
+            comando.Parameters.AddWithValue("@apellido1", trabajador.Apellido1);
+            comando.Parameters.AddWithValue("@apellido2", trabajador.Apellido2);
+            comando.Parameters.AddWithValue("@correo", trabajador.Correo);
+            comando.Parameters.AddWithValue("@hora_entrada", trabajador.HoraEntrada);
+            comando.Parameters.AddWithValue("@hora_salida", trabajador.HoraSalida);
+            comando.Parameters.AddWithValue("@imagen", trabajador.Imagen);
+            comando.Parameters.AddWithValue("@fecha_contratacion", trabajador.FechaContratacion);
+            comando.Parameters.AddWithValue("@edad", trabajador.Edad);
+            comando.Parameters.AddWithValue("@puesto", trabajador.Puesto);
+            comando.Parameters.AddWithValue("@dia_entrada", trabajador.DiaEntrada);
+            comando.Parameters.AddWithValue("@dia_salida", trabajador.DiaSalida);
+            comando.Parameters.AddWithValue("@fecha_nacimiento", trabajador.FechaNacimiento);
+            comando.Parameters.AddWithValue("@salario", trabajador.Salario);
             NpgsqlDataReader lector = comando.ExecuteReader();
             while (lector.Read())
             {
@@ -140,11 +142,23 @@ namespace Byte_Coffee.Modelo
                     Nombre = lector.GetString(0),
                     Apellido1 = lector.GetString(1),
                     Apellido2 = lector.GetString(2),
-
+                    Correo = lector.GetString(3),
+                    HoraEntrada = lector.GetString(4),
+                    HoraSalida = lector.GetString(5),
+                    Imagen = lector.GetString(6),
+                    FechaContratacion = lector.GetString(7),
+                    Edad = lector.GetInt32(8),
+                    Puesto = lector.GetString(9),
+                    DiaEntrada = lector.GetString(10),
+                    DiaSalida = lector.GetString(11),
+                    FechaNacimiento = lector.GetString(12),
+                    Salario = lector.GetDecimal(13)
                 };
+
             }
             conxBD.CerrarConexion();
         }
+
         //public bool ValidacionCampos(Trabajador trabajador)
         //{
         //    NpgsqlConnection conexion = conxBD.EstablecerConexion();

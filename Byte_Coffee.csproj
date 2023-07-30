@@ -157,9 +157,6 @@
     <Compile Include="Modelo\ModeloPlatillo.cs" />
     <Compile Include="Modelo\ModeloReserva.cs" />
     <Compile Include="Modelo\ModeloTrabajador.cs" />
-    <Compile Include="Vista\Menu.xaml.cs">
-      <DependentUpon>Menu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vista\PantallaCarga\V_PantallaCarga.xaml.cs">
       <DependentUpon>V_PantallaCarga.xaml</DependentUpon>
     </Compile>
@@ -220,10 +217,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Vista\Menu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Vista\PantallaCarga\V_PantallaCarga.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
