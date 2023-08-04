@@ -14,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using Byte_Coffee.Vista.PantallaCarga;
 namespace Byte_Coffee.Vista
 {
     /// <summary>
@@ -58,8 +58,10 @@ namespace Byte_Coffee.Vista
             ComboDiaEntrada.SelectedIndex = 0;
         }
 
-        private void BtnAgregarTrabajador_Click(object sender, RoutedEventArgs e)
+        private async void BtnAgregarTrabajador_Click(object sender, RoutedEventArgs e)
         {
+            V_PantallaCarga carga = new V_PantallaCarga();
+            carga.Show();
             string nombre = TxtNombre.Text;
             string apellido1 = TxtApellido1.Text;
             string apellido2 = TxtApellido2.Text;
@@ -72,8 +74,6 @@ namespace Byte_Coffee.Vista
             string fechaNacimiento = fecha_nacimiento.SelectedDate.Value.Date.ToString("dd/MM/yyyy");
             decimal salario = decimal.Parse(TxtSalario.Text);
             int edad = fechaActual.Year - fecha_nacimiento.SelectedDate.Value.Date.Year;
-            MessageBox.Show(imgUrl);
-            MessageBox.Show(edad + "");
             int dia = fechaActual.Day;
             int mes = fechaActual.Month;
             int anio = fechaActual.Year;
@@ -96,8 +96,9 @@ namespace Byte_Coffee.Vista
                 Salario = salario
 
             };
-            MessageBox.Show(fechaNacimiento);
-            controladorTrabajador.AgregarTrabajador(nuevoTrabajador);
+            await Task.Run(() => controladorTrabajador.AgregarTrabajador(nuevoTrabajador));
+
+            carga.Close();
 
         }
         private async void BtnSubirImagen_Click(object sender, RoutedEventArgs e)

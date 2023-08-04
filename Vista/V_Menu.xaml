@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Menu"
         MinHeight='768'
         MinWidth='1366'
@@ -21,6 +21,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height='30' />
             <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <TextBlock x:Name='Hora'
                    Text='10:00:00'
@@ -85,8 +86,12 @@
                                     Margin="0,0,16,-20"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"
+                                    CommandParameter="{Binding Id}"
+                                    x:Name='BtnPedido'
+                                    Width='500'
+                                    Click='BtnPedido_Click'
                                     Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
-                                <materialDesign:PackIcon Kind="Food" />
+                                <materialDesign:PackIcon Kind="AddShoppingCart" />
                             </Button>
                             <StackPanel Grid.Row="1"
                                         Margin="8,24,8,0">
@@ -108,13 +113,11 @@
                                         Padding="2,0,2,0"
                                         materialDesign:RippleAssist.IsCentered="True"
                                         Style="{StaticResource MaterialDesignToolButton}">
-                                    <materialDesign:PackIcon Kind="ShareVariant" />
                                 </Button>
                                 <Button Width="30"
                                         Padding="2,0,2,0"
                                         materialDesign:RippleAssist.IsCentered="True"
                                         Style="{StaticResource MaterialDesignToolButton}">
-                                    <materialDesign:PackIcon Kind="Heart" />
                                 </Button>
                             </StackPanel>
                         </Grid>
@@ -156,8 +159,9 @@
                                     Margin="0,0,16,-20"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"
+                                    CommandParameter='{Binding Id}'
                                     Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
-                                <materialDesign:PackIcon Kind="Food" />
+                                <materialDesign:PackIcon Kind="AddShoppingCart" />
                             </Button>
                             <StackPanel Grid.Row="1"
                                         Margin="8,24,8,0">
@@ -179,13 +183,11 @@
                                         Padding="2,0,2,0"
                                         materialDesign:RippleAssist.IsCentered="True"
                                         Style="{StaticResource MaterialDesignToolButton}">
-                                    <materialDesign:PackIcon Kind="ShareVariant" />
                                 </Button>
                                 <Button Width="30"
                                         Padding="2,0,2,0"
                                         materialDesign:RippleAssist.IsCentered="True"
                                         Style="{StaticResource MaterialDesignToolButton}">
-                                    <materialDesign:PackIcon Kind="Heart" />
                                 </Button>
                             </StackPanel>
                         </Grid>
@@ -232,8 +234,11 @@
                                     Margin="0,0,16,-20"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"
+                                    CommandParameter='{Binding Id}'
+                                    Click='BtnPedido_Click'
                                     Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
-                                <materialDesign:PackIcon Kind="Food" />
+
+                                <materialDesign:PackIcon Kind="AddShoppingCart" />
                             </Button>
                             <StackPanel Grid.Row="1"
                                         Margin="8,24,8,0">
@@ -265,5 +270,18 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button materialDesign:ShadowAssist.ShadowAnimationDuration="5:5:5.5"
+                VerticalAlignment='Bottom'
+                Grid.Row='7'
+                x:Name='BtnVerPedido'
+                Click='BtnVerPedido_Click'
+                HorizontalAlignment='Center'
+                Width='229'
+                Content='Ver pedido'
+                Background='#1A237E'
+                Margin='15,0,0,15'
+                BorderBrush='Transparent'
+                Style="{StaticResource MaterialDesignRaisedDarkButton}">
+        </Button>
     </Grid>
 </Window>

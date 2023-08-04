@@ -50,16 +50,43 @@ namespace Byte_Coffee.Modelo
             {
                 Platillo platillo = new Platillo()
                 {
-                    Nombre = lector.GetString(0),
-                    Precio = lector.GetDecimal(1),
-                    Descripcion = lector.GetString(2),
-                    Imagen = lector.GetString(3),
+                    Id = lector.GetInt32(0),
+                    Nombre = lector.GetString(1),
+                    Precio = lector.GetDecimal(2),
+                    Descripcion = lector.GetString(3),
+                    Imagen = lector.GetString(4),
                 };
                 menu.Add(platillo);
             }
             conxBD.CerrarConexion();
             return menu;
         }
+        public List<Platillo> ListaDePedidos(List<int> IdPedidos)
+        {
+            List<Platillo> PedidosRealizados = new List<Platillo>();
+            foreach (int id in IdPedidos)
+            {
+                NpgsqlConnection conexion = conxBD.EstablecerConexion();
+                string sentencia = "SELECT nombre,precio,imagen FROM platillo WHERE id_platillo=@id";
+                NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+                comando.Parameters.AddWithValue("@id", id);
+                NpgsqlDataReader lector = comando.ExecuteReader();
+                while (lector.Read())
+                {
+                    Platillo platillo = new Platillo()
+                    {
+                        Nombre = lector.GetString(0),
+                        Precio = lector.GetDecimal(1),
+                        Imagen = lector.GetString(2)
+                    };
+                    PedidosRealizados.Add(platillo);
+                }
+                conxBD.CerrarConexion();
+            }
+            return PedidosRealizados;
+
+        }
     }
+
 }
 

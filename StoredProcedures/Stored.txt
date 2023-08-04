@@ -53,3 +53,21 @@ $$ LANGUAGE PLPGSQL;
 
 		SELECT * from stored_procedures.detalles_trabajador();
 		SELECT * from stored_procedures.detalles_trabajador_completo(2);
+		SELECT * from stored_procedures.filtrar_puesto('Cocinero');
+		CREATE OR REPLACE FUNCTION stored_procedures.filtrar_puesto(p_puesto varchar)
+RETURNS TABLE(
+	id int,
+	nombre text,
+	puesto varchar,
+	salario decimal(10,2)
+) AS $$
+BEGIN
+	RETURN QUERY
+	SELECT
+		trabajador.id,
+		trabajador.nombre || ' ' || trabajador.apellido1 as nombre,
+		trabajador.puesto,
+		trabajador.salario
+	FROM trabajador WHERE trabajador.puesto = p_puesto;
+END;
+$$ LANGUAGE PLPGSQL;

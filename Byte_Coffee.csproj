@@ -172,8 +172,8 @@
     <Compile Include="Vista\V_Inicio.xaml.cs">
       <DependentUpon>V_Inicio.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\V_Login.xaml.cs">
-      <DependentUpon>V_Login.xaml</DependentUpon>
+    <Compile Include="Vista\V_ListaPedidos.xaml.cs">
+      <DependentUpon>V_ListaPedidos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\V_AgregarTrabajador.xaml.cs">
       <DependentUpon>V_AgregarTrabajador.xaml</DependentUpon>
@@ -239,7 +239,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\V_Login.xaml">
+    <Page Include="Vista\V_ListaPedidos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

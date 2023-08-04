@@ -36,8 +36,8 @@ namespace Byte_Coffee.Modelo
         {
             List<Trabajador> trabajadors = new List<Trabajador>();
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
-            NpgsqlCommand comando = new NpgsqlCommand("SELECT * FROM stored_procedures.filtrar_puestos(@puesto)", conexion);
-            comando.Parameters.AddWithValue("@puesto", Puesto);
+            NpgsqlCommand comando = new NpgsqlCommand("SELECT * FROM stored_procedures.filtrar_puesto(@p_puesto)", conexion);
+            comando.Parameters.AddWithValue("@p_puesto", Puesto);
             NpgsqlDataReader lector = comando.ExecuteReader();
             while (lector.Read())
             {
@@ -45,9 +45,8 @@ namespace Byte_Coffee.Modelo
                 {
                     Id = lector.GetInt16(0),
                     Nombre = lector.GetString(1),
-                    Apellido1 = lector.GetString(2),
-                    Puesto = lector.GetString(3),
-                    Salario = lector.GetDecimal(4),
+                    Puesto = lector.GetString(2),
+                    Salario = lector.GetDecimal(3),
                 };
                 trabajadors.Add(trabajador);
             }
@@ -83,29 +82,55 @@ namespace Byte_Coffee.Modelo
             comando.ExecuteNonQuery();
             conxBD.CerrarConexion();
         }
-        public List<Trabajador> DetallesTrabajador(int id)
+        public List<Trabajador> EditarTrabajador(int id)
         {
-            NpgsqlConnection conexion = conxBD.EstablecerConexion();
             List<Trabajador> trabajadors = new List<Trabajador>();
-            NpgsqlCommand comando = new NpgsqlCommand("SELECT * FROM stored_procedures.detalles_trabajador_completo(@id)", conexion);
+            NpgsqlConnection conexion = conxBD.EstablecerConexion();
+            NpgsqlCommand comando = new NpgsqlCommand("SELECT stored_procedures.editar_trabajador(@id)", conexion);
             comando.Parameters.AddWithValue("@id", id);
             NpgsqlDataReader lector = comando.ExecuteReader();
             while (lector.Read())
             {
                 Trabajador trabajador = new Trabajador()
                 {
-                    Nombre = lector.GetString(0),
+                    Id = lector.GetInt32(0),
                     Correo = lector.GetString(1),
                     HoraEntrada = lector.GetString(2),
                     HoraSalida = lector.GetString(3),
-                    Imagen = lector.GetString(4),
-                    FechaContratacion = lector.GetDateTime(5).ToString("dd/MM/yyyy"),
-                    Edad = lector.GetInt32(6),
-                    Puesto = lector.GetString(7),
-                    DiaEntrada = lector.GetString(8),
-                    DiaSalida = lector.GetString(9),
-                    FechaNacimiento = lector.GetDateTime(10).ToString("dd/MM/yyyy"),
-                    Salario = lector.GetDecimal(11)
+                    Puesto = lector.GetString(4),
+                    DiaEntrada = lector.GetString(5),
+                    DiaSalida = lector.GetString(6),
+                    Salario = lector.GetDecimal(7)
+                };
+                trabajadors.Add(trabajador);
+            }
+            conxBD.CerrarConexion();
+            return trabajadors;
+        }
+        public List<Trabajador> DetallesTrabajador(int id)
+        {
+            NpgsqlConnection conexion = conxBD.EstablecerConexion();
+            List<Trabajador> trabajadors = new List<Trabajador>();
+            NpgsqlCommand comando = new NpgsqlCommand("SELECT * FROM stored_procedures.detalles_trabajador_completo(@p_id)", conexion);
+            comando.Parameters.AddWithValue("@p_id", id);
+            NpgsqlDataReader lector = comando.ExecuteReader();
+            while (lector.Read())
+            {
+                Trabajador trabajador = new Trabajador()
+                {
+                    Id = lector.GetInt32(0),
+                    Nombre = lector.GetString(1),
+                    Correo = lector.GetString(2),
+                    HoraEntrada = lector.GetString(3),
+                    HoraSalida = lector.GetString(4),
+                    Imagen = lector.GetString(5),
+                    FechaContratacion = lector.GetDateTime(6).ToString("dd/MM/yyyy"),
+                    Edad = lector.GetInt32(7),
+                    Puesto = lector.GetString(8),
+                    DiaEntrada = lector.GetString(9),
+                    DiaSalida = lector.GetString(10),
+                    FechaNacimiento = lector.GetDateTime(11).ToString("dd/MM/yyyy"),
+                    Salario = lector.GetDecimal(12)
                 };
                 trabajadors.Add(trabajador);
 

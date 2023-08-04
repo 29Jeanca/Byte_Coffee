@@ -33,6 +33,10 @@ namespace Byte_Coffee.Controlador
         {
             modelo_trabajador.EliminarTrabajador(id);
         }
+        public void EditarTrabajdor(int id)
+        {
+            modelo_trabajador.EditarTrabajador(id);
+        }
         public List<Trabajador> DetallesTrabajador(int id)
         {
             return modelo_trabajador.DetallesTrabajador(id);

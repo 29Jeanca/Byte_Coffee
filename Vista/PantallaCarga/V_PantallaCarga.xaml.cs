@@ -23,5 +23,6 @@ namespace Byte_Coffee.Vista.PantallaCarga
         {
             InitializeComponent();
         }
+
     }
 }

@@ -2,17 +2,8 @@
 using Byte_Coffee.Controlador;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Byte_Coffee.Vista
@@ -30,10 +21,7 @@ namespace Byte_Coffee.Vista
             controladorPlatillo = new ControladorPlatillo();
             List<Platillo> menuCargado = controladorPlatillo.CargarMenu();
             listaMenuCompleto.ItemsSource = menuCargado;
-            //var id = Sesion.IdCliente;
-            //var nombre = Sesion.Nombre;
             NombreUsuario.Text = Sesion.Nombre;
-            //MessageBox.Show($"Este es el id {id} y este es el nombre {nombre}");
             reloj = new DispatcherTimer();
             reloj.Interval = TimeSpan.FromSeconds(1);
             reloj.Tick += Reloj;
@@ -42,7 +30,6 @@ namespace Byte_Coffee.Vista
         }
         private void V_Menu_Loaded(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("ENTRA");
             double anchoVentana = this.Width;
             Linea.X2 = anchoVentana;
         }
@@ -51,5 +38,19 @@ namespace Byte_Coffee.Vista
             Hora.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
+        private void BtnPedido_Click(object sender, RoutedEventArgs e)
+        {
+            BtnVerPedido.Visibility = Visibility.Visible;
+            Button btnPedido = (Button)sender;
+            Platillo platillo = (Platillo)btnPedido.DataContext;
+            int idPlatillo = platillo.Id;
+            Sesion.AgregarPedido(idPlatillo);
+        }
+
+        private void BtnVerPedido_Click(object sender, RoutedEventArgs e)
+        {
+            V_ListaPedidos pedidos = new V_ListaPedidos(Sesion.PedidosRealizados());
+            pedidos.Show();
+        }
     }
 }
