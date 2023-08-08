@@ -49,5 +49,13 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button VerticalAlignment='Bottom'
+                Width='120' Margin='0,0,0,10'
+                Content='Completar pedido'
+                FontSize='10'
+                Background='#008000'
+                BorderBrush='Transparent'
+                x:Name='BtnCompletarPedido'
+                Click='BtnCompletarPedido_Click'/>
     </Grid>
 </Window>

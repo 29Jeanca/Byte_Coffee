@@ -61,10 +61,10 @@ namespace Byte_Coffee.Modelo
             conxBD.CerrarConexion();
             return menu;
         }
-        public List<Platillo> ListaDePedidos(List<int> IdPedidos)
+        public List<Platillo> ListaDePedidos(List<int> IdPedidosPlatillo)
         {
             List<Platillo> PedidosRealizados = new List<Platillo>();
-            foreach (int id in IdPedidos)
+            foreach (int id in IdPedidosPlatillo)
             {
                 NpgsqlConnection conexion = conxBD.EstablecerConexion();
                 string sentencia = "SELECT nombre,precio,imagen FROM platillo WHERE id_platillo=@id";
@@ -86,6 +86,37 @@ namespace Byte_Coffee.Modelo
             return PedidosRealizados;
 
         }
+        public void CompletarPedido(List<int> IdPlatillosPedidos, int IdCliente)
+        {
+            DateTime time = DateTime.Now;
+            string fecha = $"{time.Day}/{time.Month}/{time.Year}";
+            string hora = $"{time.Hour}:{time.Minute}:{time.Second}";
+
+            // Insertar un registro en la tabla pedido_completo
+            NpgsqlConnection conexion = conxBD.EstablecerConexion();
+            string sentencia = "INSERT INTO pedido_completo(id_cliente,fecha_pedido,hora_pedido) VALUES(@id_cliente,@fecha_pedido,@hora_pedido) RETURNING id_pedido_completo";
+            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+            comando.Parameters.AddWithValue("@id_cliente", IdCliente);
+            comando.Parameters.AddWithValue("@fecha_pedido", fecha);
+            comando.Parameters.AddWithValue("@hora_pedido", hora);
+            int idPedidoCompleto = (int)comando.ExecuteScalar();
+            conxBD.CerrarConexion();
+            foreach (int IdPlatilloPedido in IdPlatillosPedidos)
+            {
+                conxBD.EstablecerConexion();
+                sentencia = "INSERT INTO pedidos(id_platillo_pedido,id_cliente,fecha_pedido,hora_pedido,id_pedido_completo) VALUES(@id_platillo_pedido,@id_cliente,@fecha_pedido,@hora_pedido,@id_pedido_completo)";
+                comando = new NpgsqlCommand(sentencia, conexion);
+                comando.Parameters.AddWithValue("@id_platillo_pedido", IdPlatilloPedido);
+                comando.Parameters.AddWithValue("@id_cliente", IdCliente);
+                comando.Parameters.AddWithValue("@fecha_pedido", fecha);
+                comando.Parameters.AddWithValue("@hora_pedido", hora);
+                comando.Parameters.AddWithValue("@id_pedido_completo", idPedidoCompleto);
+                comando.ExecuteReader();
+                conxBD.CerrarConexion();
+            }
+            conxBD.CerrarConexion();
+        }
+
     }
 
 }
