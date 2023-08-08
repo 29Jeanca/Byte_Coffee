@@ -61,6 +61,28 @@ namespace Byte_Coffee.Modelo
             conxBD.CerrarConexion();
             return menu;
         }
+        public List<Platillo> MenuMasPedidos()
+        {
+            List<Platillo> menu = new List<Platillo>();
+            NpgsqlConnection conexion = conxBD.EstablecerConexion();
+            string sentencia = "SELECT id_platillo,nombre,precio,descripcion,imagen FROM platillo INNER JOIN pedidos ON id_platillo_pedido=platillo.id_platillo GROUP BY platillo.id_platillo,platillo.nombre,platillo.precio,platillo.descripcion,platillo.imagen,platillo.imagen ORDER BY COUNT(pedidos.id_platillo_pedido) DESC LIMIT 8";
+            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+            NpgsqlDataReader lector = comando.ExecuteReader();
+            while (lector.Read())
+            {
+                Platillo platillo = new Platillo()
+                {
+                    Id = lector.GetInt32(0),
+                    Nombre = lector.GetString(1),
+                    Precio = lector.GetDecimal(2),
+                    Descripcion = lector.GetString(3),
+                    Imagen = lector.GetString(4),
+                };
+                menu.Add(platillo);
+            }
+            conxBD.CerrarConexion();
+            return menu;
+        }
         public List<Platillo> ListaDePedidos(List<int> IdPedidosPlatillo)
         {
             List<Platillo> PedidosRealizados = new List<Platillo>();
@@ -92,7 +114,6 @@ namespace Byte_Coffee.Modelo
             string fecha = $"{time.Day}/{time.Month}/{time.Year}";
             string hora = $"{time.Hour}:{time.Minute}:{time.Second}";
 
-            // Insertar un registro en la tabla pedido_completo
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
             string sentencia = "INSERT INTO pedido_completo(id_cliente,fecha_pedido,hora_pedido) VALUES(@id_cliente,@fecha_pedido,@hora_pedido) RETURNING id_pedido_completo";
             NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);

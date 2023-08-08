@@ -157,6 +157,9 @@
     <Compile Include="Modelo\ModeloPlatillo.cs" />
     <Compile Include="Modelo\ModeloReserva.cs" />
     <Compile Include="Modelo\ModeloTrabajador.cs" />
+    <Compile Include="Vista\PantallaCarga\V_CargaCompletandoPedido.xaml.cs">
+      <DependentUpon>V_CargaCompletandoPedido.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\PantallaCarga\V_PantallaCarga.xaml.cs">
       <DependentUpon>V_PantallaCarga.xaml</DependentUpon>
     </Compile>
@@ -219,6 +222,10 @@
     <Resource Include="StoredProcedures\Stored.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Vista\PantallaCarga\V_CargaCompletandoPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\PantallaCarga\V_PantallaCarga.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

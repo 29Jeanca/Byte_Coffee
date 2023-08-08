@@ -21,6 +21,8 @@ namespace Byte_Coffee.Vista
             controladorPlatillo = new ControladorPlatillo();
             List<Platillo> menuCargado = controladorPlatillo.CargarMenu();
             listaMenuCompleto.ItemsSource = menuCargado;
+            List<Platillo> tres_mas_pedidos = controladorPlatillo.MenuMasPedidos();
+            listaOchoMasPedidos.ItemsSource = tres_mas_pedidos;
             NombreUsuario.Text = Sesion.Nombre;
             reloj = new DispatcherTimer();
             reloj.Interval = TimeSpan.FromSeconds(1);
@@ -45,6 +47,7 @@ namespace Byte_Coffee.Vista
             Platillo platillo = (Platillo)btnPedido.DataContext;
             int idPlatillo = platillo.Id;
             Sesion.AgregarPedido(idPlatillo);
+            BtnVerPedido.Visibility = Visibility.Visible;
         }
 
         private void BtnVerPedido_Click(object sender, RoutedEventArgs e)

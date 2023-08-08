@@ -125,13 +125,13 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <TextBlock Text='Los 3 más pedidos'
+        <TextBlock Text='Los 8 más pedidos'
                    Grid.Row='3'
                    FontFamily='Arial'
                    FontSize='20'
                    Margin='13,0,0,0'
                    Foreground='#fff' />
-        <ListBox x:Name="listaTresMasPedidos"
+        <ListBox x:Name="listaOchoMasPedidos"
                  Grid.Row="4"
                  Background="White"
                  Foreground="Black"
@@ -144,8 +144,9 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <materialDesign:Card Width="300"
-                                         Background='#b0dce4'>
+                    <materialDesign:Card Width="217"
+                                         Height='270'
+                                         Background='#1A237E'>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="140" />
@@ -160,35 +161,35 @@
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"
                                     CommandParameter='{Binding Id}'
+                                    Click='BtnPedido_Click'
                                     Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
+
                                 <materialDesign:PackIcon Kind="AddShoppingCart" />
                             </Button>
                             <StackPanel Grid.Row="1"
                                         Margin="8,24,8,0">
                                 <TextBlock FontWeight="Bold"
-                                           Text='{Binding Nombre}'
                                            FontFamily='Arial'
                                            FontSize='20'
-                                           Foreground='#000' />
+                                           Text='{Binding Nombre}'
+                                           Foreground='#fff'
+                                           HorizontalAlignment='Center' />
                                 <TextBlock VerticalAlignment="Center"
                                            Text="{Binding Descripcion}"
-                                           TextWrapping="Wrap" />
-                                <TextBlock Text='{Binding Precio}' />
+                                           TextWrapping="Wrap"
+                                           Foreground='#ffff'
+                                           FontSize='15' />
+                                <TextBlock>
+                                    <Run Text="₡"
+                                         Foreground='#fff' />
+                                    <Run Text='{Binding Precio}'
+                                         Foreground='#fff' />
+                                </TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Row="2"
                                         Margin="8"
                                         HorizontalAlignment="Right"
                                         Orientation="Horizontal">
-                                <Button Width="30"
-                                        Padding="2,0,2,0"
-                                        materialDesign:RippleAssist.IsCentered="True"
-                                        Style="{StaticResource MaterialDesignToolButton}">
-                                </Button>
-                                <Button Width="30"
-                                        Padding="2,0,2,0"
-                                        materialDesign:RippleAssist.IsCentered="True"
-                                        Style="{StaticResource MaterialDesignToolButton}">
-                                </Button>
                             </StackPanel>
                         </Grid>
                     </materialDesign:Card>
@@ -275,11 +276,12 @@
                 Grid.Row='7'
                 x:Name='BtnVerPedido'
                 Click='BtnVerPedido_Click'
-                HorizontalAlignment='Center'
+                HorizontalAlignment='Left'
                 Width='229'
                 Content='Ver pedido'
                 Background='#1A237E'
-                Margin='15,0,0,15'
+                Visibility='Hidden'
+                Margin='578,0,0,15'
                 BorderBrush='Transparent'
                 Style="{StaticResource MaterialDesignRaisedDarkButton}">
         </Button>

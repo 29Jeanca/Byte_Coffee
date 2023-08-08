@@ -25,9 +25,14 @@ namespace Byte_Coffee.Controlador
         {
             return modeloPlatillo.CargarMenu();
         }
+        
         public List<Platillo> ListaDePlatillosPedidos(List<int> IdPedidosPlatillo)
         {
             return modeloPlatillo.ListaDePedidos(IdPedidosPlatillo);
+        }
+        public List<Platillo> MenuMasPedidos()
+        {
+            return modeloPlatillo.MenuMasPedidos();
         }
         public void CompletarPedido(List<int> IdPlatillosPedidos, int IdCliente)
         {
