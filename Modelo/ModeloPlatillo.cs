@@ -65,7 +65,7 @@ namespace Byte_Coffee.Modelo
         {
             List<Platillo> menu = new List<Platillo>();
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
-            string sentencia = "SELECT id_platillo,nombre,precio,descripcion,imagen FROM platillo INNER JOIN pedidos ON id_platillo_pedido=platillo.id_platillo GROUP BY platillo.id_platillo,platillo.nombre,platillo.precio,platillo.descripcion,platillo.imagen,platillo.imagen ORDER BY COUNT(pedidos.id_platillo_pedido) DESC LIMIT 8";
+            string sentencia = "SELECT platillo.id_platillo,platillo.nombre,platillo.precio,platillo.descripcion,platillo.imagen,valoraciones.valoracion FROM platillo INNER JOIN pedidos ON pedidos.id_platillo_pedido=platillo.id_platillo INNER JOIN valoraciones ON platillo.id_platillo=valoraciones.id_platillo GROUP BY platillo.id_platillo,platillo.nombre,platillo.precio,platillo.descripcion,platillo.imagen,valoraciones.valoracion ORDER BY COUNT(pedidos.id_platillo_pedido) DESC LIMIT 8";
             NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
             NpgsqlDataReader lector = comando.ExecuteReader();
             while (lector.Read())
@@ -83,13 +83,36 @@ namespace Byte_Coffee.Modelo
             conxBD.CerrarConexion();
             return menu;
         }
+        public List<Platillo> MenuMejorValorados()
+        {
+            List<Platillo> menu = new List<Platillo>();
+            NpgsqlConnection conexion = conxBD.EstablecerConexion();
+            string sentencia = "SELECT platillo.id_platillo,platillo.nombre,platillo.precio,platillo.descripcion,platillo.imagen,valoraciones.valoracion FROM valoraciones INNER JOIN platillo ON platillo.id_platillo=valoraciones.id_platillo WHERE valoracion = (SELECT MAX (valoracion) FROM valoraciones);";
+            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+            NpgsqlDataReader lector = comando.ExecuteReader();
+            while (lector.Read())
+            {
+                Platillo platillo = new Platillo()
+                {
+                    Id = lector.GetInt32(0),
+                    Nombre = lector.GetString(1),
+                    Precio = lector.GetDecimal(2),
+                    Descripcion = lector.GetString(3),
+                    Imagen = lector.GetString(4),
+                    Valoracion = lector.GetInt32(5)
+                };
+                menu.Add(platillo);
+            }
+            conxBD.CerrarConexion();
+            return menu;
+        }
         public List<Platillo> ListaDePedidos(List<int> IdPedidosPlatillo)
         {
             List<Platillo> PedidosRealizados = new List<Platillo>();
             foreach (int id in IdPedidosPlatillo)
             {
                 NpgsqlConnection conexion = conxBD.EstablecerConexion();
-                string sentencia = "SELECT nombre,precio,imagen FROM platillo WHERE id_platillo=@id";
+                string sentencia = "SELECT platillo.id_platillo,platillo.nombre,platillo.precio,platillo.imagen,valoraciones.valoracion FROM platillo INNER JOIN valoraciones ON platillo.id_platillo=valoraciones.id_platillo WHERE platillo.id_platillo=@id ";
                 NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
                 comando.Parameters.AddWithValue("@id", id);
                 NpgsqlDataReader lector = comando.ExecuteReader();
@@ -97,9 +120,10 @@ namespace Byte_Coffee.Modelo
                 {
                     Platillo platillo = new Platillo()
                     {
-                        Nombre = lector.GetString(0),
-                        Precio = lector.GetDecimal(1),
-                        Imagen = lector.GetString(2)
+                        Id = lector.GetInt32(0),
+                        Nombre = lector.GetString(1),
+                        Precio = lector.GetDecimal(2),
+                        Imagen = lector.GetString(3)
                     };
                     PedidosRealizados.Add(platillo);
                 }
@@ -110,33 +134,38 @@ namespace Byte_Coffee.Modelo
         }
         public void CompletarPedido(List<int> IdPlatillosPedidos, int IdCliente)
         {
-            DateTime time = DateTime.Now;
-            string fecha = $"{time.Day}/{time.Month}/{time.Year}";
-            string hora = $"{time.Hour}:{time.Minute}:{time.Second}";
-
-            NpgsqlConnection conexion = conxBD.EstablecerConexion();
-            string sentencia = "INSERT INTO pedido_completo(id_cliente,fecha_pedido,hora_pedido) VALUES(@id_cliente,@fecha_pedido,@hora_pedido) RETURNING id_pedido_completo";
-            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
-            comando.Parameters.AddWithValue("@id_cliente", IdCliente);
-            comando.Parameters.AddWithValue("@fecha_pedido", fecha);
-            comando.Parameters.AddWithValue("@hora_pedido", hora);
-            int idPedidoCompleto = (int)comando.ExecuteScalar();
-            conxBD.CerrarConexion();
-            foreach (int IdPlatilloPedido in IdPlatillosPedidos)
+            using (NpgsqlConnection conexion = conxBD.EstablecerConexion())
             {
-                conxBD.EstablecerConexion();
-                sentencia = "INSERT INTO pedidos(id_platillo_pedido,id_cliente,fecha_pedido,hora_pedido,id_pedido_completo) VALUES(@id_platillo_pedido,@id_cliente,@fecha_pedido,@hora_pedido,@id_pedido_completo)";
-                comando = new NpgsqlCommand(sentencia, conexion);
-                comando.Parameters.AddWithValue("@id_platillo_pedido", IdPlatilloPedido);
-                comando.Parameters.AddWithValue("@id_cliente", IdCliente);
-                comando.Parameters.AddWithValue("@fecha_pedido", fecha);
-                comando.Parameters.AddWithValue("@hora_pedido", hora);
-                comando.Parameters.AddWithValue("@id_pedido_completo", idPedidoCompleto);
-                comando.ExecuteReader();
-                conxBD.CerrarConexion();
+                using (NpgsqlCommand comando = new NpgsqlCommand("SELECT stored_procedures.insertar_pedido_completo(@id_cliente)", conexion))
+                {
+                    comando.Parameters.AddWithValue("@id_cliente", IdCliente);
+                    int idPedidoCompleto = (int)comando.ExecuteScalar();
+
+                    foreach (int IdPlatilloPedido in IdPlatillosPedidos)
+                    {
+                        using (NpgsqlCommand comandoPedidos = new NpgsqlCommand("SELECT stored_procedures.insertar_pedidos_individuales(@id_platillo_pedido, @id_cliente, @id_pedido_completo)", conexion))
+                        {
+                            comandoPedidos.Parameters.AddWithValue("@id_platillo_pedido", IdPlatilloPedido);
+                            comandoPedidos.Parameters.AddWithValue("@id_cliente", IdCliente);
+                            comandoPedidos.Parameters.AddWithValue("@id_pedido_completo", idPedidoCompleto);
+                            comandoPedidos.ExecuteNonQuery();
+                        }
+                    }
+                }
             }
-            conxBD.CerrarConexion();
         }
+        public void ValorarPedido(int IdPlatillo,int IdCliente,int Valoracion)
+        {
+            NpgsqlConnection conexion = conxBD.EstablecerConexion();
+            string sentencia = "INSERT INTO valoraciones(id_platillo,id_cliente,valoracion) VALUES(@id_platillo,@id_cliente,@valoracion)";
+            NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
+            comando.Parameters.AddWithValue("@id_platillo", IdPlatillo);
+            comando.Parameters.AddWithValue("@id_cliente", IdCliente);
+            comando.Parameters.AddWithValue("@valoracion", Valoracion);
+            comando.ExecuteNonQuery();
+
+        }
+
 
     }
 

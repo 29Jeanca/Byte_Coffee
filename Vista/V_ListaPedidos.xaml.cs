@@ -41,6 +41,7 @@ namespace Byte_Coffee.Vista
             await Task.Delay(TimeSpan.FromSeconds(5));
             controladorPlatillo.CompletarPedido(Sesion.PlatillosPedidos, Sesion.IdCliente);
             v_CargaCompletandoPedido.Close();
+            this.Close();
             
         }
     }

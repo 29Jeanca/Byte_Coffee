@@ -190,6 +190,9 @@
     <Compile Include="Vista\V_Trabajador.xaml.cs">
       <DependentUpon>V_Trabajador.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\V_ValorarPedido.xaml.cs">
+      <DependentUpon>V_ValorarPedido.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -263,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\V_Trabajador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\V_ValorarPedido.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

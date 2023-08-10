@@ -2,6 +2,7 @@
 using Byte_Coffee.Controlador;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -23,6 +24,8 @@ namespace Byte_Coffee.Vista
             listaMenuCompleto.ItemsSource = menuCargado;
             List<Platillo> tres_mas_pedidos = controladorPlatillo.MenuMasPedidos();
             listaOchoMasPedidos.ItemsSource = tres_mas_pedidos;
+            List<Platillo> ocho_mejor_valorados = controladorPlatillo.MenuMejorValorados();
+            listaOchoMejorValorados.ItemsSource = ocho_mejor_valorados;
             NombreUsuario.Text = Sesion.Nombre;
             reloj = new DispatcherTimer();
             reloj.Interval = TimeSpan.FromSeconds(1);
@@ -43,9 +46,11 @@ namespace Byte_Coffee.Vista
         private void BtnPedido_Click(object sender, RoutedEventArgs e)
         {
             BtnVerPedido.Visibility = Visibility.Visible;
+            BtnValorarPedido.Visibility = Visibility.Visible;
             Button btnPedido = (Button)sender;
             Platillo platillo = (Platillo)btnPedido.DataContext;
             int idPlatillo = platillo.Id;
+            MessageBox.Show(idPlatillo + "");
             Sesion.AgregarPedido(idPlatillo);
             BtnVerPedido.Visibility = Visibility.Visible;
         }
@@ -54,6 +59,12 @@ namespace Byte_Coffee.Vista
         {
             V_ListaPedidos pedidos = new V_ListaPedidos(Sesion.PedidosRealizados());
             pedidos.Show();
+        }
+
+        private void BtnValorarPedido_Click(object sender, RoutedEventArgs e)
+        {
+            V_ValorarPedido valorarPedido = new V_ValorarPedido(Sesion.PedidosRealizados());
+            valorarPedido.Show();
         }
     }
 }
