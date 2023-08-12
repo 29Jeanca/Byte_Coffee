@@ -16,7 +16,7 @@ namespace Byte_Coffee.Clases
         public string Descripcion { get; set; }
         public int Valoracion { get; set; }
         public string Imagen { get; set; }
-
+        public int Cantidad { get; set; }
 
     }
 }

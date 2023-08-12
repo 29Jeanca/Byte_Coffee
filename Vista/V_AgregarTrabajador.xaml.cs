@@ -99,6 +99,9 @@ namespace Byte_Coffee.Vista
             await Task.Run(() => controladorTrabajador.AgregarTrabajador(nuevoTrabajador));
 
             carga.Close();
+            V_Inicio inicio = new V_Inicio();
+            inicio.Show();
+            this.Close();
 
         }
         private async void BtnSubirImagen_Click(object sender, RoutedEventArgs e)

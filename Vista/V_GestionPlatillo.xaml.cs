@@ -62,6 +62,9 @@ namespace Byte_Coffee.Vista
             controladorPlatillo.AgregarPlatillo(nuevoPlatillo);
             VaciarCampos();
             MessageBox.Show("Ingresado correctamente");
+            V_Inicio inicio = new V_Inicio();
+            inicio.Show();
+            this.Close();
         }
         private void VaciarCampos()
         {

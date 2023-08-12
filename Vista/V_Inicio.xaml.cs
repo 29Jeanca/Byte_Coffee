@@ -1,20 +1,9 @@
-﻿using Byte_Coffee.BD;
-using Byte_Coffee.Controlador;
-using Npgsql;
+﻿using Byte_Coffee.Controlador;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using LiveCharts;
+using LiveCharts.Wpf;
+using System.Linq;
 
 namespace Byte_Coffee.Vista
 {
@@ -36,28 +25,82 @@ namespace Byte_Coffee.Vista
             txtFecha.Text = fechaCompleta;
             controladorInicio = new ControladorInicio();
             Loaded += V_Inicio_Loaded;
+            TxtCantPedidos.Text = controladorInicio.CantidadTotalPedidos().ToString();
         }
 
 
 
         private void V_Inicio_Loaded(object sender, RoutedEventArgs e)
         {
-            MgraficoCircularClientes();
-            MgraficoCircularTrabajadores();
+            FillAgePieChart();
+            GraficoPlatosPedidos();
         }
 
-        private void MgraficoCircularClientes()
+        private void FillAgePieChart()
         {
-            GraficoCircularClientes.Series["Clientes"].Points.Clear();
-            GraficoCircularClientes.Series["Clientes"].Points.AddXY("Clientes", controladorInicio.CantidadClientes());
+            var trabajadoresPorEdad = controladorInicio.GetTrabajadoresPorEdad();
+
+            SeriesCollection ageSeries = new SeriesCollection();
+
+            foreach (var edad in trabajadoresPorEdad.GroupBy(t => t.Edad))
+            {
+                ageSeries.Add(new PieSeries
+                {
+                    Title = $"{edad.Key} años",
+                    Values = new ChartValues<int> { edad.Count() }
+                });
+            }
+
+            GraficoEdadTrabajadores.Series = ageSeries;
         }
-        private void MgraficoCircularTrabajadores()
+
+        private void GraficoPlatosPedidos()
         {
-            GraficoCircularTrabajadores.Series["Trabajadores"].Points.Clear();
-            GraficoCircularTrabajadores.Series["Trabajadores"].Points.AddXY("Trabajadores", controladorInicio.CantidadTrabajadores());
+            var platillosPorPrecio = controladorInicio.PlatillosPedidos();
+
+            SeriesCollection cantPlatillos = new SeriesCollection();
+
+            foreach (var platillo in platillosPorPrecio)
+            {
+                cantPlatillos.Add(new PieSeries
+                {
+                    Title = platillo.Nombre,
+                    Values = new ChartValues<decimal> { platillo.Cantidad },
+                    DataLabels = true
+                });
+            }
+
+            GraficoPlatos.Series = cantPlatillos;
         }
+
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            V_AgregarTrabajador v_AgregarTrabajador = new V_AgregarTrabajador();
+            v_AgregarTrabajador.Show();
+            this.Close();
+        }
+
+        private void SelectAgregarPlatillo_Click(object sender, RoutedEventArgs e)
+        {
+            V_GestionPlatillo v_GestionPlatillo = new V_GestionPlatillo();
+            v_GestionPlatillo.Show();
+            this.Close();
+        }
+
+        private void SelectVerMenu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SelectVerTrabajadores_Click(object sender, RoutedEventArgs e)
+        {
+            V_Trabajador v_Trabajador = new V_Trabajador();
+            v_Trabajador.Show();
+            this.Close();
+        }
+
+        private void SelectAgregarTrabajador_Click(object sender, RoutedEventArgs e)
         {
             V_AgregarTrabajador v_AgregarTrabajador = new V_AgregarTrabajador();
             v_AgregarTrabajador.Show();

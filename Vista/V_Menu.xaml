@@ -101,7 +101,7 @@
                                            Text='{Binding Nombre}'
                                            Foreground='#fff'
                                            HorizontalAlignment='Center' />
-                                <materialDesign:RatingBar IsEnabled='False'
+                                <materialDesign:RatingBar IsReadOnly='True'
                                                           Value="{Binding Valoracion}" />
                                 <TextBlock VerticalAlignment="Center"
                                            Text="{Binding Descripcion}"
@@ -174,8 +174,8 @@
                                            Text='{Binding Nombre}'
                                            Foreground='#fff'
                                            HorizontalAlignment='Center' />
-                                <materialDesign:RatingBar
-                                    Value="{Binding Valoracion}" />
+                                <materialDesign:RatingBar IsReadOnly='True'
+                                                          Value="{Binding Valoracion}" />
                                 <TextBlock VerticalAlignment="Center"
                                            Text="{Binding Descripcion}"
                                            TextWrapping="Wrap"

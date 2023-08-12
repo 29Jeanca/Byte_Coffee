@@ -22,8 +22,8 @@ namespace Byte_Coffee.Vista
             controladorPlatillo = new ControladorPlatillo();
             List<Platillo> menuCargado = controladorPlatillo.CargarMenu();
             listaMenuCompleto.ItemsSource = menuCargado;
-            List<Platillo> tres_mas_pedidos = controladorPlatillo.MenuMasPedidos();
-            listaOchoMasPedidos.ItemsSource = tres_mas_pedidos;
+            List<Platillo> ocho_mas_pedidos = controladorPlatillo.MenuMasPedidos();
+            listaOchoMasPedidos.ItemsSource = ocho_mas_pedidos;
             List<Platillo> ocho_mejor_valorados = controladorPlatillo.MenuMejorValorados();
             listaOchoMejorValorados.ItemsSource = ocho_mejor_valorados;
             NombreUsuario.Text = Sesion.Nombre;
@@ -50,7 +50,6 @@ namespace Byte_Coffee.Vista
             Button btnPedido = (Button)sender;
             Platillo platillo = (Platillo)btnPedido.DataContext;
             int idPlatillo = platillo.Id;
-            MessageBox.Show(idPlatillo + "");
             Sesion.AgregarPedido(idPlatillo);
             BtnVerPedido.Visibility = Visibility.Visible;
         }

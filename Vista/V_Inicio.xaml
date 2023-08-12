@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Byte_Coffee.Vista"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:wf='clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization'
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="Menú principal"
         Background='#B0DCE4'
@@ -34,18 +34,24 @@
                   materialDesign:MenuAssist.TopLevelMenuItemHeight="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type materialDesign:Card}}, Path=ActualHeight}">
                 <MenuItem Header="Menú">
                     <MenuItem Header="Agregar platillo"
-                              Foreground='#000' />
+                              Foreground='#000'
+                              x:Name='SelectAgregarPlatillo'
+                              Click='SelectAgregarPlatillo_Click'/>
                     <MenuItem Header="Ver el menú"
-                              Foreground='#000' />
+                              Foreground='#000'
+                              x:Name='SelectVerMenu'
+                              Click='SelectVerMenu_Click'/>
                 </MenuItem>
                 <MenuItem Header="Trabajadores">
                     <MenuItem Header="Ver todos los trabajadores"
-                              Foreground='#000' />
+                              Foreground='#000'
+                              x:Name='SelectVerTrabajadores'
+                              Click='SelectVerTrabajadores_Click'/>
                     <MenuItem Header="Agregar un nuevo trabajador"
-                              Click='MenuItem_Click'
-                              Foreground='#000' />
+                              Foreground='#000'
+                              x:Name='SelectAgregarTrabajador'
+                              Click='SelectAgregarTrabajador_Click'/>
                 </MenuItem>
-                <MenuItem Header="Clientes" />
             </Menu>
         </materialDesign:Card>
         <TextBlock Grid.Row='0'
@@ -53,6 +59,7 @@
                    x:Name='txtFecha'
                    Foreground='#fff'
                    FontSize='30' />
+
         <StackPanel Orientation='Vertical'>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -74,85 +81,33 @@
                     <ColumnDefinition Width='250' />
                     <ColumnDefinition Width='550' />
                 </Grid.ColumnDefinitions>
-                <WindowsFormsHost Background='#B0DCE4'
-                                  Grid.ColumnSpan='2'
-                                  Margin='21,0,229,0'>
-                    <wf:Chart x:Name='GraficoCircularClientes'>
-                        <wf:Chart.Series>
-                            <wf:Series Name='Clientes'
-                                       ChartType='Doughnut'
-                                       IsValueShownAsLabel='True' />
-                        </wf:Chart.Series>
-                        <wf:Chart.ChartAreas>
-                            <wf:ChartArea>
-                            </wf:ChartArea>
-                        </wf:Chart.ChartAreas>
-                    </wf:Chart>
-                </WindowsFormsHost>
-                <WindowsFormsHost Grid.Column='1'
-                                  Margin='125,0,-125,0'>
-                    <wf:Chart x:Name='GraficoCircularTrabajadores'>
-                        <wf:Chart.Series>
-                            <wf:Series Name='Trabajadores'
-                                       ChartType='Doughnut'
-                                       IsValueShownAsLabel='True' />
-                        </wf:Chart.Series>
-                        <wf:Chart.ChartAreas>
-                            <wf:ChartArea>
-                            </wf:ChartArea>
-                        </wf:Chart.ChartAreas>
-                    </wf:Chart>
-                </WindowsFormsHost>
-                <materialDesign:Card Width="240"
-                                     Padding="8"
-                                     Margin='140,0,0,0'
-                                     Background="#427C8A"
-                                     Foreground='#ffff'
-                                     UniformCornerRadius="6"
-                                     Grid.Column='2'
-                                     Height='100'>
-                    <TextBlock Text="{Binding CantPedidos}"
-                               TextWrapping="Wrap"
-                               TextAlignment='Center'
-                               ToolTip='Cantidad de pedidos realizados' />
-                </materialDesign:Card>
+                <lvc:PieChart Name="GraficoEdadTrabajadores"
+                              Grid.Column="1"
+                              Grid.Row="1" ToolTip='Edad trabajadores'/>
+                <lvc:PieChart Name="GraficoPlatos"
+                              Grid.Column="0"
+                              Grid.Row="2" ToolTip='Cantidad de platillos pedidos' />
+
+                <Border Grid.Column='2'>
+                    <materialDesign:Card Width="240"
+                                         Padding="8"
+                                         Margin='140,0,0,0'
+                                         Background="#427C8A"
+                                         Foreground='#ffff'
+                                         UniformCornerRadius="14"
+
+                                         Height='100'>
+                        <TextBlock Text='19999'
+                                   FontFamily='Arial'
+                                   FontSize='60'
+                                   Foreground='#404040'
+                                   TextWrapping="Wrap"
+                                   TextAlignment='Center'
+                                   ToolTip='Cantidad de pedidos realizados'
+                                   x:Name='TxtCantPedidos'/>
+                    </materialDesign:Card>
+                </Border>
             </Grid>
-        </StackPanel>
-        <StackPanel Grid.Row='2'
-                    Background='#427C8A'
-                    HorizontalAlignment='Right'
-                    Width='380'
-                    Margin='0,0,0,-102'>
-            <ScrollViewer>
-                <ListBox x:Name='listaResenias'>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text='{Binding Nombre}'
-                                           Grid.Column='0'
-                                           Margin='5'
-                                           Foreground='#fff' />
-                                <TextBlock Text='{Binding Resenia}'
-                                           Grid.Column='1'
-                                           Margin='5'
-                                           Foreground='#fff' />
-                                <TextBlock Text='{Binding Valoracion}'
-                                           Grid.Column='2'
-                                           Foreground='#fff' />
-                                <TextBlock Text='{Binding Fecha}'
-                                           Grid.Column='3'
-                                           Foreground='#fff' />
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Window>
