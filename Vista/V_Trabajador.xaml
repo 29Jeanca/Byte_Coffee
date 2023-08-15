@@ -100,6 +100,12 @@
                   x:Name='Puestos'
                   SelectionChanged='Puestos_SelectionChanged'>
         </ComboBox>
+        <Button Content='Atrás'
+                HorizontalAlignment='Left'
+                VerticalAlignment='Bottom'
+                Margin='0,0,0,-370'
+                Background='#427c8a'
+                BorderBrush='Transparent'/>
 
     </Grid>
     <Window.Resources>

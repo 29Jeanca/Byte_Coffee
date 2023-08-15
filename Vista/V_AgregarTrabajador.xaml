@@ -138,6 +138,13 @@
                 ToolTip="Agrega el trabajador">
             <TextBlock Text="Agregar trabajador" />
         </Button>
+        <Button  Width='70'
+                HorizontalAlignment='Left'
+                Content='Atrás'
+                Background='#427C8A'
+                BorderBrush='Transparent'
+                Click='Button_Click'
+                />
     </Grid>
 
 </Window>

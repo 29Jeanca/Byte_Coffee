@@ -59,5 +59,12 @@ namespace Byte_Coffee.Vista
         {
 
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            V_Inicio inicio = new V_Inicio();
+            inicio.Show();
+            this.Close();
+        }
     }
 }

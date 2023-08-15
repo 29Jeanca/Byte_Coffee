@@ -115,7 +115,7 @@ namespace Byte_Coffee.Modelo
             foreach (int id in IdPedidosPlatillo)
             {
                 NpgsqlConnection conexion = conxBD.EstablecerConexion();
-                string sentencia = "SELECT platillo.id_platillo,platillo.nombre,platillo.precio,platillo.imagen,valoraciones.valoracion FROM platillo INNER JOIN valoraciones ON platillo.id_platillo=valoraciones.id_platillo WHERE platillo.id_platillo=@id ";
+                string sentencia = "SELECT platillo.id_platillo,platillo.nombre,platillo.precio,platillo.imagen FROM platillo   WHERE platillo.id_platillo=@id";
                 NpgsqlCommand comando = new NpgsqlCommand(sentencia, conexion);
                 comando.Parameters.AddWithValue("@id", id);
                 NpgsqlDataReader lector = comando.ExecuteReader();

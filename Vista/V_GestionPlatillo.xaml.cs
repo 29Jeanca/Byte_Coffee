@@ -74,5 +74,12 @@ namespace Byte_Coffee.Vista
             TxtDescripcionPlatillo.Text = "";
             imgPlatillo.Source = null;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            V_Inicio inicio = new V_Inicio();
+            inicio.Show();
+            this.Close();
+        }
     }
 }

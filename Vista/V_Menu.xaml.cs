@@ -50,8 +50,10 @@ namespace Byte_Coffee.Vista
             Button btnPedido = (Button)sender;
             Platillo platillo = (Platillo)btnPedido.DataContext;
             int idPlatillo = platillo.Id;
+            MessageBox.Show(idPlatillo+" ");
             Sesion.AgregarPedido(idPlatillo);
             BtnVerPedido.Visibility = Visibility.Visible;
+            MessageBox.Show(Sesion.PedidosRealizados()+" "); 
         }
 
         private void BtnVerPedido_Click(object sender, RoutedEventArgs e)

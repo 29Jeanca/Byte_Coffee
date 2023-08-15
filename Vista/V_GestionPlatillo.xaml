@@ -147,5 +147,13 @@
                 Height='100'
                 Width='100'
                 ToolTip="¡Agregar Platillo!" />
+        <Button Width='160'
+                VerticalAlignment='Bottom'
+                Margin='0,0,0,-420'
+                Background='#427c8a'
+                BorderBrush='Transparent'
+                Content='Atrás'
+                Click='Button_Click'
+                HorizontalAlignment='Left'/>
     </Grid>
 </Window>

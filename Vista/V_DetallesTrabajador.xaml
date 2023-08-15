@@ -154,6 +154,11 @@
             </ListBox.ItemTemplate>
 
         </ListBox>
-
+        <Button Width='90'
+                HorizontalAlignment='Left'
+                Content='Atrás'
+                Click='Button_Click_2'
+                Background='#427c8a'
+                BorderBrush='Transparent'/>
     </StackPanel>
 </Window>

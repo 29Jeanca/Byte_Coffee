@@ -116,5 +116,12 @@ namespace Byte_Coffee.Vista
                 imgUrl = await SubirImagenImgur.UploadImageAsync(imagePath);
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            V_Inicio inicio = new V_Inicio();
+            inicio.Show();
+            this.Close();
+        }
     }
 }

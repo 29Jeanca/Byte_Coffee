@@ -23,6 +23,10 @@ namespace Byte_Coffee.Vista
             InitializeComponent();
             conxBD = new ConxBD();
             controladorPlatillo = new ControladorPlatillo();
+            //foreach(int id in listaIdPlatillosPedidos)
+            //{
+            //    System.Windows.MessageBox.Show(id + " ");
+            //}
             ListaPedidos.ItemsSource = controladorPlatillo.ListaDePlatillosPedidos(listaIdPlatillosPedidos);
             NpgsqlConnection conexion = conxBD.EstablecerConexion();
             string sentencia = "SELECT SUM(precio) FROM platillo WHERE id_platillo = ANY(@listaIdPlatillosPedidos)";
