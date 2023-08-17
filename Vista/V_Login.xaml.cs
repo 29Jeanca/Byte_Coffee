@@ -15,11 +15,11 @@ namespace Byte_Coffee.Vista
     /// <summary>
     /// Lógica de interacción para Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class V_Login : Window
     {
         private ControladorLogin controlador;
         private ConxBD conx;
-        public Login()
+        public V_Login()
         {
             InitializeComponent();
             controlador = new ControladorLogin();

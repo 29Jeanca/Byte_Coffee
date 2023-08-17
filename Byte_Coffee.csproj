@@ -184,6 +184,9 @@
     <Compile Include="Vista\V_AgregarTrabajador.xaml.cs">
       <DependentUpon>V_AgregarTrabajador.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\V_Login.xaml.cs">
+      <DependentUpon>V_Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\V_LoginCliente.xaml.cs">
       <DependentUpon>V_LoginCliente.xaml</DependentUpon>
     </Compile>
@@ -257,6 +260,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\V_AgregarTrabajador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\V_Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
